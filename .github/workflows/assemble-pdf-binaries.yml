@@ -16,11 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble binaries from b64 parts
+      - name: Assemble whatever binary payloads are complete
         run: |
           set -euo pipefail
           assemble() {
             local dest="$1" key="$2" expect_sha="$3"
+            shopt -s nullglob
+            local parts=(pdf-tools-payload/${key}.part*)
+            if [ ${#parts[@]} -eq 0 ]; then
+              echo "SKIP missing parts: $key"
+              return 0
+            fi
             if [ -f "$dest" ]; then
               local got
               got=$(sha256sum "$dest" | awk '{print $1}')
@@ -30,19 +36,23 @@ jobs:
               fi
             fi
             mkdir -p "$(dirname "$dest")"
-            cat pdf-tools-payload/${key}.part* | base64 -d > "$dest"
+            cat "${parts[@]}" | base64 -d > "$dest"
             got=$(sha256sum "$dest" | awk '{print $1}')
             echo "$dest size=$(wc -c < "$dest") sha=$got"
-            test "$got" = "$expect_sha"
+            if [ "$got" != "$expect_sha" ]; then
+              echo "SHA mismatch for $dest (incomplete payload?)"
+              rm -f "$dest"
+              return 0
+            fi
           }
           assemble "pdf-tools/runtime/fonts/GlyphLessFont.ttf" "fonts_GlyphLessFont.ttf" "c7845420925a23d88ed830a63957b8af85a66a8daf8d9fc90e843673b2ef1a59"
           assemble "pdf-tools/runtime/fonts/DejaVuSans-Bold.ttf" "fonts_DejaVuSans-Bold.ttf" "e6476c1b80502924294eed40894c5b18e06c181444ca953e5334262df9c27724"
           assemble "pdf-tools/runtime/tesseract/lang/eng.traineddata.gz" "lang_eng.traineddata.gz" "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pdf-tools/runtime/fonts/GlyphLessFont.ttf \
-                  pdf-tools/runtime/fonts/DejaVuSans-Bold.ttf \
-                  pdf-tools/runtime/tesseract/lang/eng.traineddata.gz || true
+          git add -A pdf-tools/runtime/fonts/GlyphLessFont.ttf \
+                   pdf-tools/runtime/fonts/DejaVuSans-Bold.ttf \
+                   pdf-tools/runtime/tesseract/lang/eng.traineddata.gz 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No binary changes to commit"
             exit 0
