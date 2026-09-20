@@ -1,1 +1,127 @@
-file:///tmp/nautomations-website/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N Automations — AI Agents, Business Automation &amp; Workflow Automation</title>
+<meta name="description" content="N Automations builds AI agents, business process automation, and n8n / MCP-powered workflow systems that give your team back its time.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#top" class="brand"><img src="assets/images/logo.png" alt="N Automations" class="brand-logo"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#pdf-tools">PDF Tools</a>
+      <a href="ai-agents.html">AI Agents</a>
+      <a href="business-automation.html">Business Automation</a>
+      <a href="workflow-automation.html">Workflow Automation</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary btn-sm">Get Started</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">AI Agents · Automation · Workflows</div>
+        <h1>We build <em>AI-powered systems</em> that run your business while you sleep.</h1>
+        <p>N Automations designs AI agents, business process automation, and n8n / MCP-driven workflows that connect your tools, cut manual work, and scale with you — end to end.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start Your Automation</a>
+          <a href="#services" class="btn btn-ghost">Explore Services</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">What We Do</div>
+      <h2>Three pillars. One automated business.</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal"><div class="service-body"><h3>AI Agents</h3><p>Custom AI agents across chat, WhatsApp, voice, and web.</p><a href="ai-agents.html" class="service-link">See it in action</a></div></div>
+      <div class="service-card reveal"><div class="service-body"><h3>Business Automation</h3><p>Automate approvals, onboarding, reporting, and invoicing.</p><a href="business-automation.html" class="service-link">See it in action</a></div></div>
+      <div class="service-card reveal"><div class="service-body"><h3>Workflow Automation</h3><p>n8n and MCP-server pipelines connected to your stack.</p><a href="workflow-automation.html" class="service-link">See it in action</a></div></div>
+    </div>
+  </div>
+</section>
+<!-- ===================== PDF TOOLS ===================== -->
+<section class="services" id="pdf-tools">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">Products</div>
+      <h2>PDF Tools</h2>
+      <p>Desktop PDF toolkit for Windows — merge, split, compress, OCR, and more. Also try the browser version online.</p>
+    </div>
+    <div class="service-grid" style="grid-template-columns:1fr;max-width:720px;margin:0 auto">
+      <div class="service-card reveal" data-tilt style="text-align:center">
+        <div class="service-body">
+          <h3>N Automations PDF Tools v1.3.0</h3>
+          <p>Windows x64 installer. Free to download for your team.</p>
+          <p style="margin:12px 0;color:var(--ink-300)"><strong id="pdfDownloadCount">—</strong> downloads</p>
+          <div class="hero-actions" style="justify-content:center;gap:12px;flex-wrap:wrap">
+            <a id="pdfDownloadBtn" class="btn btn-primary" href="#" download>Download for Windows</a>
+            <a class="btn btn-ghost" href="/pdf-tools/">Open in Browser</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="about-copy reveal">
+      <div class="eyebrow">About N Automations</div>
+      <h2>We're a small team obsessed with taking work off your plate.</h2>
+      <p style="color:var(--ink-300);margin-top:20px">AI agents, process automation, and n8n / MCP engineering — end to end.</p>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container">
+    <div class="contact-info reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Let's scope your first automation.</h2>
+      <p>Email: nautomations.in@gmail.com · Phone: +91 96669 36366</p>
+      <p>2-36, Ghanapur, Patancheru, Sangareddy, Hyderabad, Telangana – 502300</p>
+      <a href="#contact" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> N Automations. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+<script>
+(function(){
+  var COUNT_NS='nautomations.in';
+  var COUNT_KEY='pdf-tools-v130';
+  var btn=document.getElementById('pdfDownloadBtn');
+  var el=document.getElementById('pdfDownloadCount');
+  var exeUrl=window.__PDF_EXE_URL||'';
+  function setCount(n){ if(el) el.textContent=String(n); }
+  fetch('https://api.counterapi.dev/v1/'+COUNT_NS+'/'+COUNT_KEY+'/').then(r=>r.json()).then(d=>setCount(d.count||0)).catch(function(){});
+  if(btn){
+    if(exeUrl) btn.href=exeUrl;
+    btn.addEventListener('click', function(){
+      fetch('https://api.counterapi.dev/v1/'+COUNT_NS+'/'+COUNT_KEY+'/up').then(r=>r.json()).then(d=>setCount(d.count||0)).catch(function(){});
+    });
+  }
+})();
+</script>
+</body>
+</html>
