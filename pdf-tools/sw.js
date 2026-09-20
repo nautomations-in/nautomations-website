@@ -2,7 +2,7 @@
 // Caches the application shell and local conversion engines only.
 // User documents are never read, stored or transmitted by this worker.
 const CACHE = 'na-pdf-tools-vmu8l51oz';
-const SHELL = ["/","/index.html","/assets/index-CbYPeLKl.js","/assets/jszip.min-BMmAup8j.js","/assets/engine.worker-Ca3pL-9K.js","/assets/index-jvwm160C.css"];
+const SHELL = ["/pdf-tools/","/pdf-tools/index.html","/pdf-tools/assets/index-CbYPeLKl.js","/pdf-tools/assets/jszip.min-BMmAup8j.js","/pdf-tools/assets/engine.worker-Ca3pL-9K.js","/pdf-tools/assets/index-jvwm160C.css"];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL.filter(Boolean))).then(() => self.skipWaiting()));
 });
@@ -21,7 +21,7 @@ self.addEventListener('fetch', (e) => {
           caches.open(CACHE).then((c) => c.put(req, copy));
         }
         return res;
-      }).catch(() => caches.match("/index.html")),
+      }).catch(() => caches.match("/pdf-tools/index.html")),
     ),
   );
 });
