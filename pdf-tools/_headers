@@ -1,0 +1,3 @@
+Cross-Origin-Opener-Policy: same-origin
+X-Content-Type-Options: nosniff
+Referrer-Policy: no-referrer
