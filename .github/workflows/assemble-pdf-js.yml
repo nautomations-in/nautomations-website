@@ -1,0 +1,34 @@
+name: Assemble PDF Tools JS
+on:
+  push:
+    paths:
+      - 'pdf-tools-payload/index-CbYPeLKl.js.part*'
+      - '.github/workflows/assemble-pdf-js.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble JS
+        run: |
+          set -euo pipefail
+          if [ -f pdf-tools/assets/index-CbYPeLKl.js ]; then
+            echo "JS already present"; exit 0
+          fi
+          mkdir -p pdf-tools/assets
+          cat pdf-tools-payload/index-CbYPeLKl.js.part* | base64 -d > pdf-tools/assets/index-CbYPeLKl.js
+          wc -c pdf-tools/assets/index-CbYPeLKl.js
+          if ls pdf-tools-payload/index-jvwm160C.css.part* >/dev/null 2>&1; then
+            cat pdf-tools-payload/index-jvwm160C.css.part* | base64 -d > pdf-tools/assets/index-jvwm160C.css
+          fi
+          if ls pdf-tools-payload/jszip.min-BMmAup8j.js.part* >/dev/null 2>&1; then
+            cat pdf-tools-payload/jszip.min-BMmAup8j.js.part* | base64 -d > pdf-tools/assets/jszip.min-BMmAup8j.js
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pdf-tools/assets
+          git commit -m "Assemble PDF Tools JS/CSS assets from payload" || exit 0
+          git push
