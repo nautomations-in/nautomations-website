@@ -1,0 +1,51 @@
+name: Assemble PDF Tools binaries
+on:
+  push:
+    paths:
+      - 'pdf-tools-payload/fonts_*.part*'
+      - 'pdf-tools-payload/lang_*.part*'
+      - '.github/workflows/assemble-pdf-binaries.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: assemble-pdf-binaries
+  cancel-in-progress: false
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble binaries from b64 parts
+        run: |
+          set -euo pipefail
+          assemble() {
+            local dest="$1" key="$2" expect_sha="$3"
+            if [ -f "$dest" ]; then
+              local got
+              got=$(sha256sum "$dest" | awk '{print $1}')
+              if [ "$got" = "$expect_sha" ]; then
+                echo "OK already: $dest"
+                return 0
+              fi
+            fi
+            mkdir -p "$(dirname "$dest")"
+            cat pdf-tools-payload/${key}.part* | base64 -d > "$dest"
+            got=$(sha256sum "$dest" | awk '{print $1}')
+            echo "$dest size=$(wc -c < "$dest") sha=$got"
+            test "$got" = "$expect_sha"
+          }
+          assemble "pdf-tools/runtime/fonts/GlyphLessFont.ttf" "fonts_GlyphLessFont.ttf" "c7845420925a23d88ed830a63957b8af85a66a8daf8d9fc90e843673b2ef1a59"
+          assemble "pdf-tools/runtime/fonts/DejaVuSans-Bold.ttf" "fonts_DejaVuSans-Bold.ttf" "e6476c1b80502924294eed40894c5b18e06c181444ca953e5334262df9c27724"
+          assemble "pdf-tools/runtime/tesseract/lang/eng.traineddata.gz" "lang_eng.traineddata.gz" "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pdf-tools/runtime/fonts/GlyphLessFont.ttf \
+                  pdf-tools/runtime/fonts/DejaVuSans-Bold.ttf \
+                  pdf-tools/runtime/tesseract/lang/eng.traineddata.gz || true
+          if git diff --cached --quiet; then
+            echo "No binary changes to commit"
+            exit 0
+          fi
+          git commit -m "Add PDF Tools OCR/font binaries (assembled from payload)"
+          git push
