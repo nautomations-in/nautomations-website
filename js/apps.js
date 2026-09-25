@@ -1,4 +1,4 @@
-// N Automations — app downloads (GitHub Releases) + live download count
+// N Automations — app download link (GitHub Releases) + live download count
 (function () {
   var REPO = 'nautomations-in/nautomations-website';
   var PREFIX = 'pdf-tools-';
@@ -14,17 +14,11 @@
         rel.assets.forEach(function (a) {
           if (!/\.exe$/i.test(a.name)) return;
           total += a.download_count;
-          if (!latest) latest = a; // releases are returned newest first
+          if (!latest) latest = a; // newest release first
         });
       });
       if (latest && btn) btn.href = latest.browser_download_url;
-      if (!latest && btn) {
-        btn.textContent = 'Request the Installer';
-        btn.href = 'https://wa.me/919666936366?text=Hi%2C%20please%20share%20the%20N%20Automations%20PDF%20Tools%20installer';
-        btn.target = '_blank';
-        btn.rel = 'noopener';
-      }
       if (countEl) countEl.textContent = total.toLocaleString('en-IN');
     })
-    .catch(function () { /* keep the direct link; count stays as a dash */ });
+    .catch(function () { /* keep the direct link */ });
 })();
