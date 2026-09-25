@@ -666,3 +666,5 @@ footer{background:var(--navy-950);border-top:1px solid rgba(0,0,0,.06);padding:7
 .contact-card .card-actions .btn{width:100%;justify-content:center;}
 @media (max-width:760px){.service-grid.four{grid-template-columns:1fr;}}
 .footer-col li{color:var(--ink-500);font-size:.88rem;}
+.nav-links a{white-space:nowrap;}
+@media (max-width:1180px) and (min-width:761px){.nav-links{gap:18px;}}
