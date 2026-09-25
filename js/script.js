@@ -170,7 +170,7 @@ window.addEventListener('load', () => {
     const target = document.querySelector(location.hash);
     if (target) {
       const top = target.getBoundingClientRect().top + window.pageYOffset - 84;
-      window.scrollTo(0, top);
+      window.scrollTo({ top, behavior: 'instant' });
     }
   }
 });
