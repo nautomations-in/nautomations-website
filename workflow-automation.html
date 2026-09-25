@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workflow Automation — n8n & MCP — N Automations</title>
-<meta name="description" content="n8n and MCP-server workflow automation: triggers, logic, and actions connecting your CRM, database, and SaaS stack into one self-running system.">
+<title>Pharma Workflow Automation — N Automations</title>
+<meta name="description" content="Pharma workflow automation connecting email, PDFs, Excel, CRM, databases and dashboards — built with n8n, APIs and MCP for pharmaceutical and engineering companies.">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
@@ -14,6 +14,7 @@
     <a href="index.html" class="brand"><img src="assets/images/logo.png" alt="N Automations" class="brand-logo"></a>
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
+      <a href="personalised-apps.html">Personalised Apps</a>
       <a href="ai-agents.html">AI Agents</a>
       <a href="business-automation.html">Business Automation</a>
       <a href="workflow-automation.html">Workflow Automation</a>
@@ -21,7 +22,6 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-cta">
-      <a href="contact.html" class="btn btn-primary btn-sm">Get Started</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -31,11 +31,11 @@
     <div class="ph-grid">
       <div class="reveal">
         <div class="eyebrow">Service · Workflow Automation</div>
-        <h1>n8n &amp; MCP pipelines that connect everything you already use.</h1>
-        <p class="lead">Triggers, logic, and actions built to spec — linking your CRM, database, ticketing tools, and legacy software into one orchestrated, self-running workflow.</p>
+        <h1>Workflow automation that connects your pharma and engineering operations.</h1>
+        <p class="lead">Email, PDFs, Excel, CRM, databases and dashboards linked into workflows that move enquiries, documents, approvals and reports from one step to the next.</p>
         <div class="hero-actions">
-          <a href="contact.html" class="btn btn-primary">Build Your Workflow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#builds" class="btn btn-ghost">See Real Builds</a>
+          <a href="contact.html" class="btn btn-primary">Discuss Your Automation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#builds" class="btn btn-ghost">See Example Workflows</a>
         </div>
       </div>
       <div class="reveal cube-wrap">
@@ -60,15 +60,15 @@
     <div class="split reveal">
       <div class="split-media"><img src="assets/images/workflows/mcp-server-hero.jpg" alt="MCP server bridging AI to enterprise systems"></div>
       <div class="split-copy">
-        <div class="eyebrow">MCP Server</div>
+        <div class="eyebrow">MCP / API Integration</div>
         <h2>Your AI, plugged into every system of record.</h2>
-        <p>Our MCP-server layer gives AI agents a controlled, secure bridge into Salesforce, SAP, ServiceNow, Atlassian, and your own legacy systems — no brittle point-to-point integrations.</p>
+        <p>n8n, APIs and MCP are the implementation layer. They give AI agents a controlled bridge into your CRM, ERP, databases, spreadsheets and legacy systems — within the actions you allow.</p>
         <div class="stack-row">
-          <span class="stack-pill">Salesforce</span>
-          <span class="stack-pill">SAP</span>
-          <span class="stack-pill">ServiceNow</span>
-          <span class="stack-pill">Atlassian</span>
-          <span class="stack-pill">Slack</span>
+          <span class="stack-pill">CRM</span>
+          <span class="stack-pill">ERP</span>
+          <span class="stack-pill">Email</span>
+          <span class="stack-pill">Excel</span>
+          <span class="stack-pill">Databases</span>
         </div>
         <div style="margin-top:28px"><a href="contact.html" class="btn btn-ghost">Ask About Integrations</a></div>
       </div>
@@ -79,31 +79,15 @@
 <section class="section-tight" id="builds" style="background:var(--navy-900)">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Inside the Build</div>
-      <h2>Workflows we ship, as we ship them.</h2>
-      <p>Every automation starts as a visual workflow graph — trigger, agent, logic, action — before it ever touches production.</p>
+      <div class="eyebrow">Example Workflows</div>
+      <h2>Business problem → process → AI → automation → outcome.</h2>
+      <p>Every automation starts from a real process and is mapped as trigger, agent, logic and action before it goes live.</p>
     </div>
-    <div class="gallery-grid reveal">
-      <div class="gallery-item wide tall">
-        <img src="assets/images/workflows/n8n-agent-flow.jpg" alt="n8n AI agent workflow connected to Slack">
-        <div class="gallery-caption">AI Agent → Tool → Slack automation (n8n)</div>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/workflows/coding-flow.jpg" alt="Workflow logic being developed in code">
-        <div class="gallery-caption">Custom logic &amp; code nodes</div>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/workflows/mcp-client-flow.jpg" alt="MCP client workflow diagram">
-        <div class="gallery-caption">MCP Client create / update flow</div>
-      </div>
-      <div class="gallery-item wide">
-        <img src="assets/images/workflows/data-server.jpg" alt="Data server infrastructure powering automations">
-        <div class="gallery-caption">Reliable data &amp; hosting layer</div>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/images/workflows/multi-device-sync.jpg" alt="Automation syncing across devices">
-        <div class="gallery-caption">Cross-device automation sync</div>
-      </div>
+    <div class="process-grid reveal">
+      <div class="process-step" data-tilt><div class="step-num">01</div><h3>Enquiry to Follow-up</h3><p>Email → AI extraction → CRM → quotation → follow-up → dashboard.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">02</div><h3>Documents to Reports</h3><p>PDF / Excel → AI extraction → review &amp; validation → database → report.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">03</div><h3>Customer Channels</h3><p>Web / WhatsApp → AI agent → knowledge base → CRM / API → human hand-off.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">04</div><h3>Connected Systems</h3><p>Custom logic &amp; code nodes, MCP client flows, a reliable data &amp; hosting layer and cross-device sync.</p></div>
     </div>
   </div>
 </section>
@@ -119,13 +103,13 @@
       <div class="split-copy">
         <div class="eyebrow">From Trigger to Action</div>
         <h2>Watch a workflow run end to end.</h2>
-        <p>A new lead lands, the agent enriches it, the CRM updates, the team gets pinged — seconds, not days. That's the standard every build has to meet before launch.</p>
+        <p>An enquiry arrives, the agent extracts the requirement, the CRM updates and the team is notified to prepare the quotation — every build is tested end to end before launch.</p>
         <ul class="check-list">
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span>Tested against real data before production</li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span>Error handling &amp; retry logic on every node</li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span>Monitoring and alerts after go-live</li>
         </ul>
-        <a href="contact.html" class="btn btn-primary">Start a Build</a>
+        <a href="contact.html" class="btn btn-primary">Discuss Your Automation</a>
       </div>
     </div>
   </div>
@@ -134,11 +118,11 @@
 <section class="section-tight">
   <div class="container reveal">
     <div class="cta-banner">
-      <h2>Ready to put your operations on autopilot?</h2>
-      <p>Book a free 20-minute discovery call. We'll map one workflow you could automate this month — no obligation.</p>
+      <h2>Tell Us What Your Team Repeats Every Day.</h2>
+      <p>We will turn the process into a practical automation roadmap — starting with one high-value workflow and expanding from there.</p>
       <div class="cta-actions">
-        <a href="contact.html" class="btn btn-gold">Book a Free Call</a>
-        <a href="index.html#services" class="btn btn-ghost">View Services</a>
+        <a href="contact.html" class="btn btn-gold">Discuss Your Automation</a>
+        <a href="https://wa.me/919666936366?text=Hi%2C%20I%27m%20interested%20in%20N-Automations%20services" target="_blank" rel="noopener" class="btn btn-ghost">Chat on WhatsApp</a>
       </div>
     </div>
   </div>
@@ -148,20 +132,28 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html" class="brand"><img src="assets/images/logo.png" alt="N Automations" class="brand-logo footer-logo"></a>
-        <p>AI agents, business automation, and n8n / MCP workflow systems built to give your team its time back.</p>
+        <p>AI agents, custom software and workflow automation for pharmaceutical companies, engineering teams and regulated operations.</p>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/n-automations-undefined-4bb5a7438/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.55 4.78 5.87V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.45-2.16 2.96V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/nautomations.in/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://x.com/nautomationsin" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7.5 8.6L22 22h-6.9l-5.4-6.6L3.4 22H0.4l8-9.2L2 2h7l4.9 6z"/></svg></a>
+          <a href="https://wa.me/919666936366?text=Hi%2C%20I%27m%20interested%20in%20N-Automations%20services" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.43-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.43 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.28l5.67-1.49a11.3 11.3 0 0 0 5.42 1.38c6.26 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03z"/></svg></a>
+        </div>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Solutions</h4>
         <ul>
+          <li><a href="personalised-apps.html">Personalised Apps</a></li>
           <li><a href="ai-agents.html">AI Agents</a></li>
           <li><a href="business-automation.html">Business Automation</a></li>
           <li><a href="workflow-automation.html">Workflow Automation</a></li>
-          <li><a href="business-automation.html#analysis">Business Analysis</a></li>
+          <li><a href="business-automation.html#analysis">Business Analytics</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
+          <li><a href="index.html#pharma">Pharma Solutions</a></li>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#process">Our Process</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
@@ -171,17 +163,18 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li>nautomations.in@gmail.com</li>
-          <li>+91 96669 36366</li>
-          <li>2-36, Ghanapur, Patancheru,<br>Sangareddy, Hyderabad,<br>Telangana – 502300</li>
+          <li>Founder: K. Ramakrishna</li>
+          <li><a href="mailto:nautomations.in@gmail.com">nautomations.in@gmail.com</a></li>
+          <li><a href="tel:+919666936366">+91 96669 36366</a></li>
+          <li><a href="tel:+919866037949">+91 98660 37949</a></li>
+          <li>Hyderabad, Telangana – 502300</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> N Automations. All rights reserved.</span>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="/pdf-tools/">PDF Tools</a>
       </div>
     </div>
   </div>
