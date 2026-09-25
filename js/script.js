@@ -163,3 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(el => cio.observe(el));
   }
 });
+
+// ===== land on #section links from other pages (after images load) =====
+window.addEventListener('load', () => {
+  if (location.hash.length > 1) {
+    const target = document.querySelector(location.hash);
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.pageYOffset - 84;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }
+});
