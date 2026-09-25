@@ -671,7 +671,11 @@ footer{background:var(--navy-950);border-top:1px solid rgba(0,0,0,.06);padding:7
 
 /* ---------- v1.2: app showcase (PDF Tools) ---------- */
 .split-media.app-shot img{aspect-ratio:auto;object-fit:contain;}
-.app-shots{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;margin-top:60px;align-items:start;}
+.app-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start;}
+.app-shot-card{margin:0;}
+.app-shots .split-media img{aspect-ratio:16/10;object-fit:contain;background:#fff;}
+.app-shot-card figcaption{margin-top:14px;text-align:center;font-size:.85rem;color:var(--ink-500);letter-spacing:.04em;}
+.split.app-detail{margin-top:70px;align-items:start;}
 .app-note{font-size:.82rem;color:var(--ink-500);margin-top:22px;line-height:1.6;}
 .app-ad-link{display:block;}
 @media (max-width:760px){.app-shots{grid-template-columns:1fr;}}
