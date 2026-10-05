@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '',
         f.get('fmessage') || ''
       ].join('\n');
-      window.location.href = 'mailto:nautomations.in@gmail.com?subject=' +
+      window.location.href = 'mailto:info@nautomations.in?subject=' +
         encodeURIComponent('Automation enquiry — ' + (f.get('fname') || 'Website')) +
         '&body=' + encodeURIComponent(body);
       const btn = form.querySelector('button[type="submit"]');
@@ -172,5 +172,20 @@ window.addEventListener('load', () => {
       const top = target.getBoundingClientRect().top + window.pageYOffset - 84;
       window.scrollTo({ top, behavior: 'instant' });
     }
+  }
+});
+
+// ===== Customized AI launch countdown (launch: 20 Oct 2026, IST) =====
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('aiDaysLeft');
+  if (!el) return;
+  const launch = new Date('2026-10-20T00:00:00+05:30');
+  const days = Math.ceil((launch - new Date()) / 86400000);
+  if (days > 0) {
+    el.textContent = String(days);
+  } else {
+    el.textContent = 'Now';
+    const span = el.nextElementSibling; if (span) span.textContent = 'Launching';
+    const eb = document.getElementById('aiLaunchEyebrow'); if (eb) eb.textContent = 'Launching Now';
   }
 });
