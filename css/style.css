@@ -679,3 +679,7 @@ footer{background:var(--navy-950);border-top:1px solid rgba(0,0,0,.06);padding:7
 .app-note{font-size:.82rem;color:var(--ink-500);margin-top:22px;line-height:1.6;}
 .app-ad-link{display:block;}
 @media (max-width:760px){.app-shots{grid-template-columns:1fr;}}
+
+/* ---------- v1.3: Customized AI (coming soon) ---------- */
+.split-media.ai-visual{background:var(--navy-950);}
+.split-media.ai-visual img{aspect-ratio:16/10;object-fit:contain;padding:22px;}
