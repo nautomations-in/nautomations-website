@@ -1,0 +1,12 @@
+{
+  "version": "1.1.0",
+  "notes": "Pharma AI 1.1.0 - what's new\n\n- Self-serve setup: the Admin registers the company with a company e-mail and a 6-digit code (valid 24 hours).\n- The app builds the company's own server on Supabase automatically, or on your company server, AWS, Microsoft Azure, Google Cloud or another cloud provider with the included guides.\n- 3-month free trial with complete access starts at once: no licence key, unlimited users and PCs.\n- Other PCs join once with the PC connection code from the Admin, then sign in with username and password. IT can roll the code out to many PCs from a file.\n- Licence per active user account; PCs are not counted. A10 shows the trial countdown, the active users and Buy 1-year licence / Buy lifetime licence. N Automations switches the licence on: no key to type, no reinstall.\n- N Automations receives only the Admin's company e-mail and daily account numbers, never names, passwords, prompts, files or API keys.\n- Security: file integrity check at every start, debugger detection, protected licence and sign-in code, and a signed licence status certificate checked by the company server and every PC.\n- Get it from the Microsoft Store (signed by Microsoft, updated by the Store) or as the website installer with Admin-controlled updates.\n- Eight guide PDFs (server setup, AI API key, PC connection) are included and open without internet.\n- The app frame stays fixed in the window; the draft label is removed; About shows the full N Automations contact card.",
+  "pub_date": "2026-10-23T15:03:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSKzdkOTh4THgzZCsvNWpsUUF6REt3RWpxUWZRMGh6NFliNTUrVHorWnFiU00ycFJCOHJHNmdaeHdiT0VNNU41eVpDd29yWWxlNUdCK05uT0NEd2JrdGJTRkNxR1dGNmdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkyNzY3ODQwCWZpbGU6UGhhcm1hIEFJXzEuMS4wX3g2NC1zZXR1cC5leGUJdmVyc2lvbjoxLjEuMAoyVi9aUDlOQmxCc3hUcE5sMnNQYysyYmUxMlloS1ZjM3pvOU0rcStjdklQYkNxN1ZFT0FPMURtYjNIUFlkd3UzMzFhS09KMVRRZ3VZMmVaaEZJRFJBdz09Cg==",
+      "url": "https://www.nautomations.in/downloads/pharma-ai/PharmaAI_Setup_1.1.0_x64.exe"
+    }
+  },
+  "serverVersion": "1.1.0"
+}

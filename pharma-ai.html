@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharma AI – AI assistant for every department of a pharma company | N Automations</title>
+<meta name="description" content="Pharma AI gives every department of a pharmaceutical company its own AI to draft SOPs, logsheets, Office files and e-mails in minutes. Functions built on 21 CFR Part 11 &amp; EU GMP Annex 11 requirements. Windows; macOS coming soon. Free 3-month trial.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/images/logo.png">
+<style>
+/* Pharma AI page: small page-specific additions; colours and sizes come from css/style.css */
+section img[width][height]{height:auto;}
+.pa-brand{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.pa-brand img{width:64px;height:64px;flex:none;}
+.pa-brand strong{display:block;font-family:var(--font-head);font-size:clamp(2.4rem,4.6vw,3.4rem);font-weight:800;color:#0A4BD0;line-height:1.05;letter-spacing:-.01em;}
+.pa-brand span{display:block;margin-top:6px;font-size:.98rem;color:var(--ink-500);}
+.hero-stats.pa-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.page-hero .reveal{opacity:1;transform:none;}
+.pa-hero-side{display:flex;flex-direction:column;align-items:center;gap:24px;align-self:start;}
+.pa-hero-logo{width:min(360px,80%);height:auto;filter:drop-shadow(0 18px 36px rgba(20,90,200,.18));}
+.check-list.pa-hero-points{align-self:stretch;margin:0;gap:12px;}
+.check-list.pa-hero-points li{font-size:.95rem;line-height:1.5;}
+.check-list.pa-hero-points strong{color:var(--ink-100);}
+.pa-hero-side .glass-panel{align-self:stretch;}
+.pa-trial-line{margin-top:18px;font-size:.9rem;color:var(--ink-500);}
+.pa-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pa-badge{background:var(--navy-800);border:1px solid rgba(56,224,255,.3);border-radius:var(--radius-md);padding:22px 20px;display:flex;flex-direction:column;gap:12px;font-size:.93rem;color:var(--ink-300);line-height:1.5;}
+.pa-badge svg{width:28px;height:28px;color:var(--cyan-300);flex:none;}
+.pa-badge strong{color:var(--ink-100);font-weight:700;}
+.pa-more{text-align:center;margin-top:34px;}
+.pa-more a{color:var(--gold-text);font-weight:600;font-size:.92rem;}
+.pa-more a:hover{text-decoration:underline;}
+.app-shot-card figcaption strong{display:block;color:var(--ink-100);letter-spacing:.04em;margin-bottom:4px;}
+.app-shot-card figcaption span{display:block;letter-spacing:0;line-height:1.5;}
+.pa-dl-card{max-width:1160px;margin:0 auto;}
+.pa-dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+.pa-dl-col{display:flex;flex-direction:column;}
+.pa-dl-col .eyebrow{margin-bottom:10px;}
+.pa-dl-col h3{font-size:1.25rem;margin-bottom:16px;}
+.pa-dl-col .btn{width:100%;justify-content:center;white-space:normal;text-align:center;}
+.pa-soon{opacity:.6;cursor:not-allowed;}
+.pa-soon:hover{transform:none;background:rgba(0,0,0,.04);}
+.pa-meta{font-size:.86rem;color:var(--ink-500);line-height:1.6;margin-top:14px;}
+.pa-facts{margin-top:16px;display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--ink-300);}
+.pa-facts strong{color:var(--ink-100);display:inline-block;min-width:76px;}
+.pa-hash{margin-top:14px;font-family:Consolas,'Courier New',monospace;font-size:.76rem;line-height:1.5;word-break:break-all;background:var(--navy-900);border:1px solid rgba(0,0,0,.08);border-radius:var(--radius-sm);padding:10px 12px;color:var(--ink-300);}
+.pa-hash span{display:block;font-family:var(--font-body);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);margin-bottom:2px;}
+.pa-code{font-family:Consolas,'Courier New',monospace;font-size:.85em;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);border-radius:6px;padding:1px 6px;word-break:break-word;}
+.pa-dl-card .app-note{border-top:1px solid rgba(0,0,0,.08);padding-top:20px;margin-top:28px;}
+.check-list.pa-cols{display:block;column-count:2;column-gap:44px;margin-bottom:0;}
+.check-list.pa-cols li{break-inside:avoid;margin-bottom:16px;}
+.split.pa-pair{align-items:start;}
+.split.pa-pair .check-list{margin-bottom:0;}
+.split-copy p.app-note{font-size:.84rem;color:var(--ink-500);margin:22px 0 0;}
+.split-copy a.pa-link,.check-list a.pa-link,.faq-a a.pa-link,.pa-meta a.pa-link{color:var(--gold-text);font-weight:600;}
+.split-copy a.pa-link:hover,.check-list a.pa-link:hover,.faq-a a.pa-link:hover,.pa-meta a.pa-link:hover{text-decoration:underline;}
+.pa-disclaimer{max-width:900px;margin:36px auto 0;text-align:center;font-size:.82rem;color:var(--ink-500);line-height:1.65;}
+.pa-faq-head{margin:64px auto 28px;}
+@media (max-width:1080px){.pa-badges{grid-template-columns:repeat(2,1fr);}.pa-dl-grid{grid-template-columns:1fr 1fr;}.pa-dl-mac{grid-column:1 / -1;}}
+@media (max-width:760px){.pa-badges,.pa-dl-grid{grid-template-columns:1fr;}.check-list.pa-cols{column-count:1;}.pa-dl-grid{gap:40px;}}
+</style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="brand"><img src="assets/images/logo.png" alt="N Automations" class="brand-logo"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="personalised-apps.html">Personalised Apps</a>
+      <a href="ai-agents.html">AI Agents</a>
+      <a href="business-automation.html">Business Automation</a>
+      <a href="workflow-automation.html">Workflow Automation</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-grid">
+      <div class="reveal">
+        <div class="pa-brand">
+          <div><strong>Pharma AI</strong><span>by N Automations · Desktop app for Windows · macOS coming soon</span></div>
+        </div>
+        <div class="eyebrow">Version 1.1.0 · Windows 10 / 11 (64-bit) · macOS (coming soon)</div>
+        <h1>Every department of your pharma company gets its own AI. Your records stay on your own server.</h1>
+        <p class="lead">Pharma AI is a desktop AI assistant built for the complete structure of a pharmaceutical company: corporate office, manufacturing plant and common services, from QA / QC and Production to HR, Finance, Sales and IT. Each department's AI answers only questions about that department's work and drafts SOPs, logsheets, checklists, Office files and e-mails in minutes, in your company's own format. Every answer is marked “AI-generated – review before use”. Your company runs Pharma AI on its own server with its own AI key, on Windows today and on macOS soon. Start with a free 3-month trial with complete access for unlimited users and PCs.</p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">Download Free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
+          <a href="mailto:info@nautomations.in?subject=Pharma%20AI%20enquiry" class="btn btn-ghost">Ask for a Quotation</a>
+        </div>
+        <div class="hero-stats pa-stats" style="margin-top:44px">
+          <div><strong>19</strong><span>Standard Departments</span></div>
+          <div><strong>90</strong><span>Day Free Trial</span></div>
+          <div><strong>4</strong><span>AI Providers Supported</span></div>
+        </div>
+      </div>
+      <div class="reveal pa-hero-side">
+        <img class="pa-hero-logo" src="assets/images/pharma-ai/logo-large.png" alt="Pharma AI logo" width="560" height="560">
+        <ul class="check-list pa-hero-points">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span><strong>Controlled, Safe AI for Pharma Companies</strong>, with functions built on 21 CFR Part 11 and EU GMP Annex 11 requirements</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span><strong>Completely Administrator-Controlled</strong>: Users, Departments, AI Models, Token Limits and Budgets, Retention and Notifications</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span><strong>Each Department's AI Stays in Its Own Lane</strong>: Domain Guard refuses off-topic questions</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span><strong>Every Action Recorded</strong> in a secure, time-stamped Audit Trail; every answer is a draft for human review</span></li>
+        </ul>
+        <div class="glass-panel" data-tilt>
+          <img src="assets/images/pharma-ai/home.png" alt="Pharma AI Home screen for a QA / QC / Validation user with Quick Create cards for SOP, Logsheet, Checklist, Manual, Datasheet, Write a mail, Presentation, Excel sheet, Chart and Drawing" width="2160" height="1350">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FASTER DOCUMENTATION ===================== -->
+<section class="section-tight" id="documentation">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">Faster Documentation</div>
+      <h2>Documentation work across the company becomes faster and more consistent.</h2>
+      <p>SOPs, logsheets, checklists, manuals, datasheets, presentations, Excel sheets, charts, drawings and e-mails are drafted in minutes in your company's own format, ready for review. Word, PDF and PowerPoint files carry your company logo and name, the department, the user and the date. Your teams spend their time reviewing and approving instead of typing from scratch.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-step" data-tilt><div class="step-num">01</div><h3>Choose a Quick Create card</h3><p>SOP, Logsheet, Checklist, Manual, Datasheet, Write a mail, Presentation, Excel sheet, Chart or Drawing.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">02</div><h3>Answer a short guided form</h3><p>Give the topic and the key details. The department's AI then drafts the file in the chat.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">03</div><h3>Get the draft in your format</h3><p>A Word, PDF, Excel, PowerPoint, chart, drawing or e-mail (.eml) draft opens in the sandboxed preview, ready to download.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">04</div><h3>Review and approve</h3><p>Your people review and approve the draft in your own quality system. Every file is marked “AI-assisted draft – review before use”.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPLIANCE BADGES ===================== -->
+<section class="section-tight" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">Whole Company · Regulated Environments</div>
+      <h2>Built for the whole pharma company. Ready for regulated work.</h2>
+      <p>Corporate office, manufacturing plant and common services: all 19 standard departments work in one controlled system. Its functions are built on 21 CFR Part 11 and EU GMP Annex 11 requirements, and your company validates Pharma AI for its intended use with our complete supplier validation pack.</p>
+    </div>
+    <div class="pa-badges reveal">
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <p><strong>Functions built on 21 CFR Part 11 &amp; EU GMP Annex 11 requirements</strong></p>
+      </div>
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <p>Part 11-ready controls: append-only audit trail, role-based access, password re-authentication</p>
+      </div>
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 3h6M10 3v6L4.5 19A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-2L14 9V3"/><path d="M7 15h10"/></svg>
+        <p>Designed to support ALCOA+ data integrity and GAMP 5 guidance</p>
+      </div>
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <p>Human in the loop: the AI never approves, signs or releases records</p>
+      </div>
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+        <p>The FDA and EMA do not certify software for Part 11 or Annex 11: your company validates Pharma AI with our complete supplier validation pack</p>
+      </div>
+      <div class="pa-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+        <p>Your records stay on your own company server: N Automations has no account on it and cannot read it</p>
+      </div>
+    </div>
+    <div class="pa-more reveal"><a href="#compliance">See the Part 11 functions and “About certification” →</a></div>
+  </div>
+</section>
+
+<!-- ===================== SCREENSHOTS ===================== -->
+<section class="section-tight" id="screenshots">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">See It in Action</div>
+      <h2>A focused AI assistant for each department.</h2>
+      <p>Users get drafts to review. They never get decisions. Select a screenshot to open it full size.</p>
+    </div>
+    <div class="app-shots reveal">
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/home.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/home.png" alt="Pharma AI Home screen with Start a new chat and the Quick Create cards" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>01 · Department Home</strong><span>Each department gets its own AI. Start a chat or use a Quick Create card for SOPs, logsheets, checklists and more.</span></figcaption>
+      </figure>
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/chat-answer.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/chat-answer.png" alt="A deviation investigation outline answered in the QA / QC / Validation chat, marked AI-generated with Review before use" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>02 · Chat Answer</strong><span>Streaming answers in the QA / QC / Validation department, each marked as AI-generated with a review-before-use note.</span></figcaption>
+      </figure>
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/domain-guard.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/domain-guard.png" alt="Domain Guard refusing a finance question in the QA / QC / Validation chat and suggesting the Finance &amp; Accounts department" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>03 · Domain Guard</strong><span>Domain Guard politely refuses questions from outside the department and names the right department.</span></figcaption>
+      </figure>
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/word-preview.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/word-preview.png" alt="A created SOP Word file in the sandboxed preview panel next to the chat, with the company header and a Download button" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>04 · Word Preview</strong><span>Created Word files open in a sandboxed preview with your company header. Download is the only action.</span></figcaption>
+      </figure>
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/audit-trail.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/audit-trail.png" alt="Activity &amp; Audit, Prompts tab, listing each question with user, domain, Domain Guard decision and reason, with export to Excel, PDF or CSV" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>05 · Activity &amp; Audit</strong><span>Activity &amp; Audit shows every question with its Domain Guard decision, with export to Excel, PDF or CSV.</span></figcaption>
+      </figure>
+      <figure class="app-shot-card">
+        <a href="assets/images/pharma-ai/data-retention.png" target="_blank" rel="noopener" class="split-media app-shot app-ad-link"><img src="assets/images/pharma-ai/data-retention.png" alt="Data &amp; Retention settings: retention in days, answer text not stored, legal holds, deleting records with a reason and the full data export" width="2160" height="1350" loading="lazy"></a>
+        <figcaption><strong>06 · Data &amp; Retention</strong><span>Retention periods, legal holds, controlled deletion with a reason, and a full data export.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOWNLOAD ===================== -->
+<section class="section-tight" id="download" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">Free Download · Version 1.1.0</div>
+      <h2>Download Pharma AI for Windows and macOS.</h2>
+      <p>The download is free. The setup wizard starts a 3-month free trial with complete access, unlimited users and PCs, and no licence key. The macOS version is coming soon.</p>
+    </div>
+    <div class="contact-form contact-card pa-dl-card reveal">
+      <div class="pa-dl-grid">
+        <div class="pa-dl-col">
+          <div class="eyebrow">Recommended</div>
+          <h3>Microsoft Store</h3>
+          <!-- MICROSOFT STORE BUTTON: "coming soon" state.
+               The listing (Store ID 9NVN67CVWFN0) is waiting for Microsoft certification.
+               To switch it on when the listing is live, replace the <button> below with:
+                 <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9NVN67CVWFN0" target="_blank" rel="noopener">Get it from Microsoft Store</a>
+               and delete the paragraph with class "pa-soon-note" under it.
+               Do not use Microsoft's badge image (the badge terms are not confirmed). -->
+          <button type="button" class="btn btn-ghost pa-soon" disabled aria-disabled="true" data-store-url="https://apps.microsoft.com/detail/9NVN67CVWFN0">Microsoft Store - coming soon</button>
+          <p class="pa-meta pa-soon-note">The Store listing will be available here once Microsoft completes certification.</p>
+          <p class="pa-meta">Free, signed by Microsoft, installs without a Windows warning and is kept up to date by the Store. IT teams can use <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span> or deploy with Microsoft Intune.</p>
+        </div>
+        <div class="pa-dl-col">
+          <div class="eyebrow">Website Installer</div>
+          <h3>Direct download</h3>
+          <a class="btn btn-primary" href="/downloads/pharma-ai/PharmaAI_Setup_1.1.0_x64.exe" download>Direct download (.exe) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
+          <ul class="pa-facts">
+            <li><strong>File</strong> PharmaAI_Setup_1.1.0_x64.exe</li>
+            <li><strong>Version</strong> 1.1.0</li>
+            <li><strong>Size</strong> 9.64 MB (10,109,608 bytes)</li>
+            <li><strong>Windows</strong> Windows 11, or Windows 10 version 22H2, 64-bit (x64)</li>
+          </ul>
+          <div class="pa-hash"><span>SHA-256</span>EACB408792FA6D7F1A7612F3EAAAF0B9084BDCFEC171245A1FB99C862A31B4C2</div>
+          <p class="pa-meta">Signed by N Automations. Updates install only after your Administrator approves the new version.</p>
+        </div>
+        <div class="pa-dl-col pa-dl-mac">
+          <div class="eyebrow">Apple Mac</div>
+          <h3>macOS</h3>
+          <!-- macOS BUTTON: "coming soon" state.
+               The macOS version is not published yet. To switch it on when the macOS download is live:
+                 1. Put the macOS download address in data-mac-url below.
+                 2. Replace the <button> below with:
+                      <a class="btn btn-primary" href="(the macOS download address)" download>Download for macOS</a>
+                 3. Delete the paragraph with class "pa-mac-soon-note" under it, and add the file name, version,
+                    size and SHA-256 in a <ul class="pa-facts"> and <div class="pa-hash">, as in the Windows column.
+                 4. Update the hero version line ("macOS (coming soon)"), the download heading text and the
+                    System requirements item "macOS version: coming soon" with the confirmed macOS details.
+                 5. If the macOS app is not notarised by Apple, add a short note under the button (like the
+                    Windows SmartScreen note) explaining how to open it the first time
+                    (System Settings > Privacy & Security > Open Anyway).
+                 6. The Regulatory Compliance Assessment covers Pharma AI 1.1.0 for Windows. Update the line
+                    "The assessment covers Pharma AI 1.1.0 for Windows." in #certification only when the
+                    assessment has been extended to the macOS version. -->
+          <button type="button" class="btn btn-ghost pa-soon" disabled aria-disabled="true" data-mac-url="">macOS - coming soon</button>
+          <p class="pa-meta pa-mac-soon-note">The macOS version of Pharma AI is coming soon. The download, its file details and its SHA-256 will appear here when it is released.</p>
+          <p class="pa-meta">To hear when it is ready, write to <a href="mailto:info@nautomations.in?subject=Pharma%20AI%20for%20macOS" class="pa-link">info@nautomations.in</a>.</p>
+        </div>
+      </div>
+      <p class="app-note"><strong>Windows SmartScreen:</strong> the direct download is signed with N Automations' own certificate, so Windows SmartScreen shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. You can first compare the file's SHA-256 with the value above (in PowerShell: <span class="pa-code">Get-FileHash -Algorithm SHA256 PharmaAI_Setup_1.1.0_x64.exe</span>). On Windows 11 PCs with Smart App Control switched on, the direct download is blocked. Please use the Microsoft Store version instead: it is signed by Microsoft and installs without any warning. Need help? <a href="mailto:support@nautomations.in">support@nautomations.in</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IT DOES ===================== -->
+<section class="section-tight" id="features">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">What Pharma AI Does</div>
+      <h2>Everyday questions and drafting, department by department.</h2>
+      <p>Pharma AI gives each department a focused AI assistant for everyday questions and drafting. Users get drafts to review. They never get decisions.</p>
+    </div>
+    <ul class="check-list pa-cols reveal">
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>19 standard departments covering the complete structure of a pharmaceutical company. Corporate / Office: Administration / Management; HR; Finance &amp; Accounts; Sales &amp; Marketing, Business Development; Purchase / Procurement / Commercial; Supply Chain; Planning / PPC; and Legal &amp; Regulatory Affairs. Manufacturing Plant: Production &amp; Operations; QA / QC / Validation; Research &amp; Development; Warehouse / Stores; Engineering, Maintenance &amp; Projects; EHS / Safety; and Facility Management. Common: Security; IT; Housekeeping; and Canteen. The Administrator switches each department on or off.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Domain Guard checks every question with fast rules, a small classifier model and an output check. A question from outside the department gets a polite refusal that names the right department, and the main model is never called for it. No department answers requests for software code, and emergency questions get fixed emergency guidance first.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Quick Create cards for SOP, Logsheet, Checklist, Manual, Datasheet, Write a mail, Presentation, Excel sheet, Chart and Drawing. Each card opens a short guided form, and the chat then produces the file.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Word, PDF, Excel, PowerPoint, chart, drawing and e-mail (.eml) files. Word, PDF and PowerPoint files carry your company logo and name, the department, the user, the date and an “AI-assisted draft – review before use” note. Excel sheets, charts and drawings carry the same details as text, and e-mail drafts carry the note in the file's header fields.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>A sandboxed preview panel with no scripts, macros or network. Download is the only action, and every download is logged.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Write a mail drafts workplace e-mails on any topic. You copy the draft or download it as .eml or Word, then send it from your own mail program. The app has no send control.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Upload for review accepts PDF, DOCX, XLSX, PPTX, TXT, CSV, PNG and JPG files (50 MB by default, up to 1 GB where your server allows), with a reason, a description and the Level-2 password. Macro files and programs are refused. The original is stored on your server with its SHA-256 fingerprint, and the Administrator is notified.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Chat answers stay only in the PC's memory and are gone at sign-out. By default your server keeps only each answer's SHA-256 fingerprint, length, tokens and model, not its text.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== COMPLIANCE ===================== -->
+<section class="section-tight" id="compliance" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">21 CFR Part 11 · EU GMP Annex 11</div>
+      <h2>Functions built on 21 CFR Part 11 and EU GMP Annex 11 requirements.</h2>
+      <p>Pharma AI's functions are built on the electronic-record requirements of 21 CFR Part 11 and EU GMP Annex 11, and support ALCOA+ data-integrity principles and GAMP 5 guidance. In our clause-by-clause assessment, the controls for system access, authority checks, device checks, audit trails and record copies are assessed as supported, and step sequencing as supported where applicable. Protecting records over the whole retention period, archiving and data migration are partly supported, as explained under “About certification” below. Pharma AI has no electronic signatures, so Part 11 Subpart C does not apply, and the AI never approves, signs or releases records. Built-in controls and supplier evidence:</p>
+    </div>
+    <ul class="check-list pa-cols reveal">
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>A secure, computer-generated, time-stamped audit trail. It records every sign-in, question (with its decision and reason), result, upload, download, admin action, deletion and legal hold, with the user, the PC and the server time (stored in UTC, shown in IST). The database refuses any change to a log record and allows deletion only through the controlled Administrator deletion or the nightly retention job, both recorded in the Deletion Log.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Named personal logins created only by the Administrator, with one department per user, no self-registration and no self-service password reset.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Role-based access (User, Admin, Backup Admin) enforced on the server. Administrators can never read passwords, Level-2 passwords or AI keys; they can only reset them.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Account lockout after wrong passwords (default 5), with Administrator notification, idle sign-out (default 15 minutes) and a maximum session length (default 12 hours).</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Two-step sign-in with an authenticator app for Administrators. Once an Administrator has enrolled, every Administrator function requires it.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Password re-authentication for critical actions: a deletion needs a written reason and the Administrator's own password, an upload needs the Level-2 password, and showing the PC connection code needs the Administrator's Level-2 password and is logged. These are password checks; Pharma AI has no electronic signatures.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Controlled deletion by Administrators only. Every deletion goes to a permanent Deletion Log and, by default, notifies all Administrators. Admin actions and the Deletion Log can never be deleted.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Retention set by the Administrator (default 1,095 days / 3 years; 30 to 36,500 days) and applied by a nightly job at 02:00 IST. Legal holds stop deletion.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Copies for review: filtered audit exports to Excel, PDF or CSV, and a full JSON export of all 22 record types. Each export is itself logged with its SHA-256. Uploaded files stay on your server and are listed in the export, not included, and AI answer text is stored only if your Administrator switches answer storage on.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>PC-bound sessions: each PC joins with the PC connection code and registers a DPAPI-protected device key. A lost PC can be released at once.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>ALCOA+ support: records are attributable (user, role, department, PC, server time, AI provider and model), contemporaneous, original (uploads with SHA-256) and complete (refused questions are kept too).</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Change control support: website installs update only after the Administrator approves the version, Store installs are updated by the Store, and every configuration change is recorded.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Supplier evidence for your validation: a URS with 121 requirements, a traceability matrix, a verification report and a clause-by-clause Part 11 / Annex 11 assessment. The suggested GAMP 5 category is Category 4 (configured product) with indirect GxP impact; your company confirms this in its validation plan.</span></li>
+    </ul>
+    <div class="section-head center reveal pa-faq-head" id="certification">
+      <div class="eyebrow" style="justify-content:center">About Certification</div>
+      <h2>Asked for a Part 11 certificate? Here is the answer.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item open">
+        <div class="faq-q">Does Pharma AI have a 21 CFR Part 11 certificate? <span class="plus">+</span></div>
+        <div class="faq-a"><p>No. The FDA and the EMA do not certify or approve software for 21 CFR Part 11 or EU GMP Annex 11 compliance, so no software can hold an official “Part 11 certificate” or “Annex 11 certificate”. A pharmaceutical company achieves compliance by validating the system for its intended use and running it under its own SOPs and controls. N Automations supplies the complete supplier validation pack to make that fast: a User Requirement Specification with 121 requirements, a requirements traceability matrix, a software verification and validation report, and a clause-by-clause 21 CFR Part 11 / EU GMP Annex 11 Regulatory Compliance Assessment. Write to <a href="mailto:info@nautomations.in" class="pa-link">info@nautomations.in</a> to receive it.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How far does Pharma AI meet Part 11 and Annex 11? <span class="plus">+</span></div>
+        <div class="faq-a"><p>Its functions are built on both. In our clause-by-clause Regulatory Compliance Assessment, the Part 11 controls for limited system access (11.10 d), audit trails (11.10 e), authority checks (11.10 g), device checks (11.10 h) and record copies (11.10 b, with one stated limitation: AI answer text is kept only if your Administrator switches answer storage on) are assessed as supported, and step sequencing (11.10 f) as supported where applicable. For Annex 11, data-exchange checks (5), printed copies through exports (8.1), the audit trail (9), logical access and security controls (12.1 to 12.4) and business continuity (16) are assessed as supported. Three areas are partly supported: protecting records for the whole retention period (11.10 c; Annex 11 clause 7.1) and archiving (Annex 11 clause 17), which also depend on your company's hosting, backups and archives; and data migration (Annex 11 clause 4.8), because a restore tool for the full data export is not part of version 1.1.0. Pharma AI has no electronic signatures, so Part 11 Subpart C does not apply. Validation, training, written policies, document control, backups and the classification of your deployment remain your company's responsibility under its own quality system; the assessment gives practical guidance for each. The assessment covers Pharma AI 1.1.0 for Windows.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section-tight" id="how-it-works">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center">How It Works</div>
+      <h2>Your server, your AI key.</h2>
+      <p>Pharma AI keeps your company's data under your company's control. In daily use, PCs talk only to your company server, and your company server talks to the AI provider you choose.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-step" data-tilt><div class="step-num">01</div><h3>Your PCs</h3><p>Pharma AI on Windows; macOS coming soon. PCs connect only to your company server, over HTTPS and WSS.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">02</div><h3>Your company server</h3><p>Supabase, set up automatically, or self-hosted. Accounts, records, files, settings and AI keys are stored only here.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">03</div><h3>Your AI provider</h3><p>OpenAI, Azure OpenAI, Anthropic (Claude) or Google Gemini, called only from your server with your own key.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">04</div><h3>Licence data only</h3><p>N Automations has no account on your server and cannot read it. It receives only licence data.</p></div>
+    </div>
+    <ul class="check-list pa-cols reveal" style="margin-top:60px">
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Company server on Supabase: the setup wizard builds it automatically in the Mumbai region in about 3–5 minutes. Or use the free self-hosted edition of Supabase on your own server, AWS, Microsoft Azure, Google Cloud or another cloud provider. Eight step-by-step guides (PDF) are included in the app.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>All company data, including accounts, records, uploaded files, settings and AI keys, is stored only on your company server. N Automations has no account on it and cannot read it.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Use your own API key from OpenAI, Azure OpenAI, Anthropic (Claude) or Google Gemini. Keys are kept only in the encrypted vault on your server and shown as the last 4 characters. AI providers are called only from your server, never from PCs.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Choose models per department and per user in Premium, Standard and Economy tiers. Daily token limits, an optional company daily cap and a monthly budget in ₹ or US$, with alerts (80 % and 100 % by default) and a choice to block new questions or only notify at the limit, keep costs under control.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Your company pays its AI provider and its server platform directly; N Automations is not responsible for AI charges. N Automations recommends paid business API accounts in your company's name, zero-data-retention or enterprise options where offered, and spending limits set in the provider's own console.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>The Supabase free plan is fine for the trial, but it limits files to 50 MB and the database to 500 MB, has no automatic backups, and pauses after a week without use. Supabase Pro is recommended after purchase. Backups of the company server are your company's responsibility.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== ADMIN + SECURITY ===================== -->
+<section class="section-tight" id="security" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="split pa-pair reveal">
+      <div class="split-copy">
+        <div class="eyebrow">Administration</div>
+        <h2>Administration, branding and accessibility.</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Eleven Administrator areas: Admin Home, Users &amp; Domains, AI Models &amp; API Keys, Token Limits &amp; Budgets, Activity &amp; Audit, Notifications, Branding, Data &amp; Retention, Security, Licence &amp; Subscription, and System &amp; Updates.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Notifications for uploads and Level-2 password use (always on) and, switchable, for lockouts, Level-2 password locks, budget alerts, deletions, licence warnings and recovery-code use.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Branding: your company logo and app name appear in the header, window title, taskbar and shortcuts on every PC.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Administrator recovery: a Backup Admin, ten one-time recovery codes and a logged break-glass procedure with two named people. N Automations holds no credentials and has no back door.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Accessibility: text size from 50 to 200 %, high-contrast mode, full keyboard use, visible focus, text contrast of at least 4.5:1, screen-reader labels, reduced motion, and light and dark themes that follow Windows.</span></li>
+        </ul>
+      </div>
+      <div class="split-copy">
+        <div class="eyebrow">Security &amp; Privacy</div>
+        <h2>Security and privacy.</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>No share, send, e-mail or print controls; no connectors, plug-ins, web browsing or code execution; and no telemetry, analytics or crash reports.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>PCs connect only to your company server, over HTTPS and WSS. During setup or a company-server update, the Administrator's PC also reaches the N Automations Licence Service and api.supabase.com. PCs installed from the website also fetch the signed update file from www.nautomations.in when an update is checked or approved.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Integrity: SHA-256 fingerprints of answers, uploads and downloaded files; licence data signed with Ed25519; requests checked against strict schemas; and TLS for all traffic.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Hardened 1.1.0 build: a compiled core without debug information, encrypted sensitive texts, obfuscated setup, sign-in and licence screens, an integrity check at every start and debugger detection. No software can be guaranteed impossible to attack; our Application Security Hardening Statement explains the protections and their limits.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>N Automations receives only licence data: the Administrator's company e-mail address and its domain, your company server address, the app version, and daily counts of active, disabled and total user accounts. It never sees user names, usernames, passwords, questions, answers, files, audit logs or AI keys. See the <a href="pharma-ai-privacy.html" class="pa-link">Pharma AI privacy policy</a> for details.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRIAL + REQUIREMENTS ===================== -->
+<section class="section-tight" id="licensing">
+  <div class="container">
+    <div class="split pa-pair reveal">
+      <div class="split-copy">
+        <div class="eyebrow">Free Trial &amp; Licensing</div>
+        <h2>Start free for 3 months.</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>The download is free, from the Microsoft Store or this page.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>3-month free trial: 90 days from the moment the setup wizard activates it, with complete access, unlimited users and PCs, and no licence key. There is one trial per company e-mail domain and per company server.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>The Administrator sees reminders when 30, 14 and 7 days are left. If no licence is bought, new AI questions pause on day 91. Sign-in, History, the audit trail and exports keep working, and nothing is deleted.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>1-year licence: 365 days from the switch-on day or the end of the trial, whichever is later, so unused trial days are kept. 15 grace days follow the end date.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Lifetime licence: never expires and includes all future updates. N Automations can pause and resume it, for example if a payment bounces.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Licences are counted per active user account: any User, Admin or Backup Admin account that exists and is not disabled on an India-time day. The bill uses the highest daily count in the billing period. PCs are not counted, and there is no hard user limit; extra users are billed at renewal or by invoice.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>After payment, N Automations switches your licence on. There is no key to type and no reinstall. No prices are published; for a quotation, write to <a href="mailto:info@nautomations.in" class="pa-link">info@nautomations.in</a>.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Business continuity: the app keeps working for up to 30 days if your company server cannot reach the Licence Service, and Administrators see a warning after 7 days. After a licence ends, a renew-only mode keeps History, the audit trail and exports available.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Your company pays its AI provider and its company server platform directly.</span></li>
+        </ul>
+      </div>
+      <div class="split-copy" id="requirements">
+        <div class="eyebrow">System Requirements</div>
+        <h2>What you will need.</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Windows version: Windows 11, or Windows 10 version 22H2, 64-bit (x64); ARM PCs are not supported. The Microsoft Store version runs on Windows 10 version 2004 (build 19041) or later.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>macOS version: coming soon. Its system requirements will be listed here when it is released.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Edge WebView2 runtime (built into Windows 11 and normally present on updated Windows 10; the website installer downloads it from Microsoft if it is missing)</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>A screen of at least 1366 × 768, with display scaling of 100, 125, 150 or 200 %</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>About 10 MB for the program, plus space for downloaded files. No special hardware is needed.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>The PC clock must be correct to within 10 minutes. No administrator rights are needed to install (per user) or use the app.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Network: outbound HTTPS (port 443) and WSS from PCs to your company server; during setup, the Administrator's PC also needs the N Automations Licence Service and api.supabase.com</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Company server: Supabase, or the free self-hosted edition of Supabase on your own server or cloud, reachable over https with a valid certificate. The server needs internet access, so air-gapped sites are not supported in 1.1.0.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>An API account with OpenAI, Azure OpenAI, Anthropic (Claude) or Google Gemini, paid for by your company</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>A company e-mail address on your own domain for setup. Gmail, Yahoo, Outlook.com, Rediffmail and other free e-mail services are refused.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Virtual desktops and Remote Desktop session hosts are not validated for 1.1.0.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROLL-OUT + SUPPORT ===================== -->
+<section class="section-tight" id="support" style="background:var(--navy-900)">
+  <div class="container">
+    <div class="split pa-pair reveal">
+      <div class="split-copy">
+        <div class="eyebrow">For IT Teams</div>
+        <h2>Roll-out for IT teams.</h2>
+        <ul class="check-list">
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Store (recommended): signed by Microsoft, no Windows warning, updated by the Store, and installed per user without administrator rights.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>winget: <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span></span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Intune: add Pharma AI as a Microsoft Store app (Store ID 9NVN67CVWFN0) and assign it to your device or user groups.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Each PC joins once with a single PC connection code. For a mass roll-out, IT can place the code in <span class="pa-code">%ProgramData%\PharmaAI\connection-code.txt</span>. The file must be writable only by administrators; otherwise the app ignores it.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Website installer: signed with N Automations' own certificate. Updates install only after your Administrator approves the new version. On Windows 11 PCs with Smart App Control switched on, use the Microsoft Store version.</span></li>
+        </ul>
+        <p class="app-note">The Microsoft Store listing is waiting for Microsoft certification. Store, winget and Intune installs work once the listing is live.</p>
+      </div>
+      <div class="split-copy">
+        <div class="eyebrow">Support</div>
+        <h2>Talk to N Automations.</h2>
+        <p>N Automations, Hyderabad, India. Supplier evidence for your validation is part of our documentation pack; write to <a href="mailto:info@nautomations.in" class="pa-link">info@nautomations.in</a> to receive it.</p>
+        <div class="contact-detail">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l9 6 9-6M3 6h18v12H3z"/></svg></div>
+          <div><strong>Sales &amp; licences</strong><span><a href="mailto:info@nautomations.in">info@nautomations.in</a></span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg></div>
+          <div><strong>Help</strong><span><a href="mailto:support@nautomations.in">support@nautomations.in</a></span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.79.63 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.2a2 2 0 0 1 2.11-.45c.86.3 1.75.51 2.65.63A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><strong>Phone / WhatsApp</strong><span><a href="tel:+919666936366">+91 96669 36366</a></span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></div>
+          <div><strong>Website</strong><span><a href="index.html">www.nautomations.in</a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA + DISCLAIMER ===================== -->
+<section class="section-tight">
+  <div class="container reveal">
+    <div class="cta-banner">
+      <h2>Start Your Free 3-Month Trial.</h2>
+      <p>Complete access for unlimited users and PCs, with no licence key. Your records stay on your own company server.</p>
+      <div class="cta-actions">
+        <a href="#download" class="btn btn-gold">Download Pharma AI</a>
+        <a href="https://wa.me/919666936366?text=Hi%2C%20I%27m%20interested%20in%20Pharma%20AI" target="_blank" rel="noopener" class="btn btn-ghost">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <p class="pa-disclaimer">Pharma AI is designed to support 21 CFR Part 11, EU GMP Annex 11, ALCOA+ data-integrity principles and GAMP 5 guidance. N Automations' Regulatory Compliance Assessment is an assessment, not a certificate. Pharma AI is not certified or approved by the FDA, the EMA or any other regulator or third party. Your company achieves compliance by validating Pharma AI for its intended use, supported by our documentation pack. Pharma AI is a drafting and question-answering assistant with no electronic signatures. Every output is an AI-generated draft that must be reviewed before use. The software does not make GMP decisions, and it does not approve, sign, release or certify records. Microsoft, Windows, Azure and Intune are trademarks of the Microsoft group of companies. Apple, Mac and macOS are trademarks of Apple Inc. Other product names are the property of their owners.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand"><img src="assets/images/logo.png" alt="N Automations" class="brand-logo footer-logo"></a>
+        <p>AI agents, custom software and workflow automation for pharmaceutical companies, engineering teams and regulated operations.</p>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/n-automations-undefined-4bb5a7438/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.55 4.78 5.87V21h-4v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.45-2.16 2.96V21H9z"/></svg></a>
+          <a href="https://www.instagram.com/nautomations.in/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://x.com/nautomationsin" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7.5 8.6L22 22h-6.9l-5.4-6.6L3.4 22H0.4l8-9.2L2 2h7l4.9 6z"/></svg></a>
+          <a href="https://wa.me/919666936366?text=Hi%2C%20I%27m%20interested%20in%20N-Automations%20services" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.43-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.43 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.7 5.8.7 12.07c0 2 .52 3.95 1.52 5.67L.6 23.28l5.67-1.49a11.3 11.3 0 0 0 5.42 1.38c6.26 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="pharma-ai.html">Pharma AI</a></li>
+          <li><a href="personalised-apps.html">Personalised Apps</a></li>
+          <li><a href="ai-agents.html">AI Agents</a></li>
+          <li><a href="business-automation.html">Business Automation</a></li>
+          <li><a href="workflow-automation.html">Workflow Automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#pharma">Pharma Solutions</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#process">Our Process</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@nautomations.in">info@nautomations.in</a></li>
+          <li><a href="mailto:support@nautomations.in">support@nautomations.in</a></li>
+          <li><a href="tel:+919666936366">+91 96669 36366</a></li>
+          <li>Hyderabad, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> N Automations. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="pharma-ai-privacy.html">Pharma AI Privacy Policy</a>
+        <a href="/pdf-tools/">PDF Tools</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
