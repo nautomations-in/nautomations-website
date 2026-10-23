@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pharma AI – AI assistant for every department of a pharma company | N Automations</title>
-<meta name="description" content="Pharma AI gives every department of a pharmaceutical company its own AI to draft SOPs, logsheets, Office files and e-mails in minutes. Functions built on 21 CFR Part 11 &amp; EU GMP Annex 11 requirements. Windows; macOS coming soon. Free 3-month trial.">
+<meta name="description" content="Pharma AI gives every department of a pharmaceutical company its own AI to draft SOPs, logsheets, Office files and e-mails in minutes. Functions built on 21 CFR Part 11 &amp; EU GMP Annex 11 requirements. Windows and macOS. Free 3-month trial.">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" type="image/png" href="assets/images/logo.png">
 <style>
@@ -85,11 +85,11 @@ section img[width][height]{height:auto;}
     <div class="ph-grid">
       <div class="reveal">
         <div class="pa-brand">
-          <div><strong>Pharma AI</strong><span>by N Automations · Desktop app for Windows · macOS coming soon</span></div>
+          <div><strong>Pharma AI</strong><span>by N Automations · Desktop app for Windows and macOS</span></div>
         </div>
-        <div class="eyebrow">Version 1.1.0 · Windows 10 / 11 (64-bit) · macOS (coming soon)</div>
+        <div class="eyebrow">Version 1.1.0 · Windows 10 / 11 (64-bit) · macOS 11 or later (Apple Silicon and Intel)</div>
         <h1>Every department of your pharma company gets its own AI. Your records stay on your own server.</h1>
-        <p class="lead">Pharma AI is a desktop AI assistant built for the complete structure of a pharmaceutical company: corporate office, manufacturing plant and common services, from QA / QC and Production to HR, Finance, Sales and IT. Each department's AI answers only questions about that department's work and drafts SOPs, logsheets, checklists, Office files and e-mails in minutes, in your company's own format. Every answer is marked “AI-generated – review before use”. Your company runs Pharma AI on its own server with its own AI key, on Windows today and on macOS soon. Start with a free 3-month trial with complete access for unlimited users and PCs.</p>
+        <p class="lead">Pharma AI is a desktop AI assistant built for the complete structure of a pharmaceutical company: corporate office, manufacturing plant and common services, from QA / QC and Production to HR, Finance, Sales and IT. Each department's AI answers only questions about that department's work and drafts SOPs, logsheets, checklists, Office files and e-mails in minutes, in your company's own format. Every answer is marked “AI-generated – review before use”. Your company runs Pharma AI on its own server with its own AI key, on Windows and macOS. Start with a free 3-month trial with complete access for unlimited users and PCs.</p>
         <div class="hero-actions">
           <a href="#download" class="btn btn-primary">Download Free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
           <a href="mailto:info@nautomations.in?subject=Pharma%20AI%20enquiry" class="btn btn-ghost">Ask for a Quotation</a>
@@ -214,7 +214,7 @@ section img[width][height]{height:auto;}
     <div class="section-head center reveal">
       <div class="eyebrow" style="justify-content:center">Free Download · Version 1.1.0</div>
       <h2>Download Pharma AI for Windows and macOS.</h2>
-      <p>The download is free. The setup wizard starts a 3-month free trial with complete access, unlimited users and PCs, and no licence key. The macOS version is coming soon.</p>
+      <p>The download is free. The setup wizard starts a 3-month free trial with complete access, unlimited users and PCs, and no licence key. The macOS version is one universal app for Apple Silicon and Intel Macs.</p>
     </div>
     <div class="contact-form contact-card pa-dl-card reveal">
       <div class="pa-dl-grid">
@@ -247,24 +247,22 @@ section img[width][height]{height:auto;}
         <div class="pa-dl-col pa-dl-mac">
           <div class="eyebrow">Apple Mac</div>
           <h3>macOS</h3>
-          <!-- macOS BUTTON: "coming soon" state.
-               The macOS version is not published yet. To switch it on when the macOS download is live:
-                 1. Put the macOS download address in data-mac-url below.
-                 2. Replace the <button> below with:
-                      <a class="btn btn-primary" href="(the macOS download address)" download>Download for macOS</a>
-                 3. Delete the paragraph with class "pa-mac-soon-note" under it, and add the file name, version,
-                    size and SHA-256 in a <ul class="pa-facts"> and <div class="pa-hash">, as in the Windows column.
-                 4. Update the hero version line ("macOS (coming soon)"), the download heading text and the
-                    System requirements item "macOS version: coming soon" with the confirmed macOS details.
-                 5. If the macOS app is not notarised by Apple, add a short note under the button (like the
-                    Windows SmartScreen note) explaining how to open it the first time
-                    (System Settings > Privacy & Security > Open Anyway).
-                 6. The Regulatory Compliance Assessment covers Pharma AI 1.1.0 for Windows. Update the line
-                    "The assessment covers Pharma AI 1.1.0 for Windows." in #certification only when the
-                    assessment has been extended to the macOS version. -->
-          <button type="button" class="btn btn-ghost pa-soon" disabled aria-disabled="true" data-mac-url="">macOS - coming soon</button>
-          <p class="pa-meta pa-mac-soon-note">The macOS version of Pharma AI is coming soon. The download, its file details and its SHA-256 will appear here when it is released.</p>
-          <p class="pa-meta">To hear when it is ready, write to <a href="mailto:info@nautomations.in?subject=Pharma%20AI%20for%20macOS" class="pa-link">info@nautomations.in</a>.</p>
+          <!-- macOS download, live from 24-10-2026. For a new version: put the new .dmg in /downloads/pharma-ai/,
+               change the file name in href and in pa-facts, the version, the size and the SHA-256
+               (lower case, as shasum -a 256 prints it). Macs never update themselves: the app tells Mac users
+               to download the new .dmg from this page. -->
+          <a class="btn btn-primary" href="/downloads/pharma-ai/PharmaAI_1.1.0_universal.dmg" download>Download for macOS (.dmg) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></svg></a>
+          <ul class="pa-facts">
+            <li><strong>File</strong> PharmaAI_1.1.0_universal.dmg</li>
+            <li><strong>Version</strong> 1.1.0</li>
+            <li><strong>Size</strong> 22.66 MB (23,759,196 bytes)</li>
+            <li><strong>macOS</strong> macOS 11 Big Sur or later</li>
+            <li><strong>Mac</strong> Apple Silicon and Intel (universal)</li>
+          </ul>
+          <div class="pa-hash"><span>SHA-256</span>27f2823187c80bd74074557055f7677a279c3096b440485cc8129bf408d29c4a</div>
+          <p class="pa-meta"><strong>First open:</strong> the app carries an ad-hoc signature (no Apple certificate) and is not notarised by Apple, so macOS asks once to confirm it. Drag Pharma AI to Applications, open it, then go to System Settings &gt; Privacy &amp; Security and click <em>Open Anyway</em>. After an update, confirm it once more.</p>
+          <p class="pa-meta">At every start the app checks its bundled server files and guides against SHA-256 values built into it and refuses to start if any was changed. The app program itself has only the ad-hoc signature, so before you install, compare the file's SHA-256 with the value above (in Terminal: <span class="pa-code">shasum -a 256 PharmaAI_1.1.0_universal.dmg</span>).</p>
+          <p class="pa-meta">New versions for Mac are downloaded from this page; your sign-in and settings stay.</p>
         </div>
       </div>
       <p class="app-note"><strong>Windows SmartScreen:</strong> the direct download is signed with N Automations' own certificate, so Windows SmartScreen shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. You can first compare the file's SHA-256 with the value above (in PowerShell: <span class="pa-code">Get-FileHash -Algorithm SHA256 PharmaAI_Setup_1.1.0_x64.exe</span>). On Windows 11 PCs with Smart App Control switched on, the direct download is blocked. Please use the Microsoft Store version instead: it is signed by Microsoft and installs without any warning. Need help? <a href="mailto:support@nautomations.in">support@nautomations.in</a></p>
@@ -313,7 +311,7 @@ section img[width][height]{height:auto;}
       <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Copies for review: filtered audit exports to Excel, PDF or CSV, and a full JSON export of all 22 record types. Each export is itself logged with its SHA-256. Uploaded files stay on your server and are listed in the export, not included, and AI answer text is stored only if your Administrator switches answer storage on.</span></li>
       <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>PC-bound sessions: each PC joins with the PC connection code and registers a DPAPI-protected device key. A lost PC can be released at once.</span></li>
       <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>ALCOA+ support: records are attributable (user, role, department, PC, server time, AI provider and model), contemporaneous, original (uploads with SHA-256) and complete (refused questions are kept too).</span></li>
-      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Change control support: website installs update only after the Administrator approves the version, Store installs are updated by the Store, and every configuration change is recorded.</span></li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Change control support: Windows website installs update only after the Administrator approves the version, Store installs are updated by the Store, Macs are updated only when the new .dmg is installed, and every configuration change is recorded.</span></li>
       <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Supplier evidence for your validation: a URS with 121 requirements, a traceability matrix, a verification report and a clause-by-clause Part 11 / Annex 11 assessment. The suggested GAMP 5 category is Category 4 (configured product) with indirect GxP impact; your company confirms this in its validation plan.</span></li>
     </ul>
     <div class="section-head center reveal pa-faq-head" id="certification">
@@ -327,7 +325,7 @@ section img[width][height]{height:auto;}
       </div>
       <div class="faq-item">
         <div class="faq-q">How far does Pharma AI meet Part 11 and Annex 11? <span class="plus">+</span></div>
-        <div class="faq-a"><p>Its functions are built on both. In our clause-by-clause Regulatory Compliance Assessment, the Part 11 controls for limited system access (11.10 d), audit trails (11.10 e), authority checks (11.10 g), device checks (11.10 h) and record copies (11.10 b, with one stated limitation: AI answer text is kept only if your Administrator switches answer storage on) are assessed as supported, and step sequencing (11.10 f) as supported where applicable. For Annex 11, data-exchange checks (5), printed copies through exports (8.1), the audit trail (9), logical access and security controls (12.1 to 12.4) and business continuity (16) are assessed as supported. Three areas are partly supported: protecting records for the whole retention period (11.10 c; Annex 11 clause 7.1) and archiving (Annex 11 clause 17), which also depend on your company's hosting, backups and archives; and data migration (Annex 11 clause 4.8), because a restore tool for the full data export is not part of version 1.1.0. Pharma AI has no electronic signatures, so Part 11 Subpart C does not apply. Validation, training, written policies, document control, backups and the classification of your deployment remain your company's responsibility under its own quality system; the assessment gives practical guidance for each. The assessment covers Pharma AI 1.1.0 for Windows.</p></div>
+        <div class="faq-a"><p>Its functions are built on both. In our clause-by-clause Regulatory Compliance Assessment, the Part 11 controls for limited system access (11.10 d), audit trails (11.10 e), authority checks (11.10 g), device checks (11.10 h) and record copies (11.10 b, with one stated limitation: AI answer text is kept only if your Administrator switches answer storage on) are assessed as supported, and step sequencing (11.10 f) as supported where applicable. For Annex 11, data-exchange checks (5), printed copies through exports (8.1), the audit trail (9), logical access and security controls (12.1 to 12.4) and business continuity (16) are assessed as supported. Three areas are partly supported: protecting records for the whole retention period (11.10 c; Annex 11 clause 7.1) and archiving (Annex 11 clause 17), which also depend on your company's hosting, backups and archives; and data migration (Annex 11 clause 4.8), because a restore tool for the full data export is not part of version 1.1.0. Pharma AI has no electronic signatures, so Part 11 Subpart C does not apply. Validation, training, written policies, document control, backups and the classification of your deployment remain your company's responsibility under its own quality system; the assessment gives practical guidance for each. The assessment covers Pharma AI 1.1.0 for Windows. The macOS version has the same functions and uses the same company server, but it was not assessed separately.</p></div>
       </div>
     </div>
   </div>
@@ -342,7 +340,7 @@ section img[width][height]{height:auto;}
       <p>Pharma AI keeps your company's data under your company's control. In daily use, PCs talk only to your company server, and your company server talks to the AI provider you choose.</p>
     </div>
     <div class="process-grid reveal">
-      <div class="process-step" data-tilt><div class="step-num">01</div><h3>Your PCs</h3><p>Pharma AI on Windows; macOS coming soon. PCs connect only to your company server, over HTTPS and WSS.</p></div>
+      <div class="process-step" data-tilt><div class="step-num">01</div><h3>Your PCs</h3><p>Pharma AI on Windows and macOS. PCs and Macs connect only to your company server, over HTTPS and WSS.</p></div>
       <div class="process-step" data-tilt><div class="step-num">02</div><h3>Your company server</h3><p>Supabase, set up automatically, or self-hosted. Accounts, records, files, settings and AI keys are stored only here.</p></div>
       <div class="process-step" data-tilt><div class="step-num">03</div><h3>Your AI provider</h3><p>OpenAI, Azure OpenAI, Anthropic (Claude) or Google Gemini, called only from your server with your own key.</p></div>
       <div class="process-step" data-tilt><div class="step-num">04</div><h3>Licence data only</h3><p>N Automations has no account on your server and cannot read it. It receives only licence data.</p></div>
@@ -368,9 +366,9 @@ section img[width][height]{height:auto;}
         <ul class="check-list">
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Eleven Administrator areas: Admin Home, Users &amp; Domains, AI Models &amp; API Keys, Token Limits &amp; Budgets, Activity &amp; Audit, Notifications, Branding, Data &amp; Retention, Security, Licence &amp; Subscription, and System &amp; Updates.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Notifications for uploads and Level-2 password use (always on) and, switchable, for lockouts, Level-2 password locks, budget alerts, deletions, licence warnings and recovery-code use.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Branding: your company logo and app name appear in the header, window title, taskbar and shortcuts on every PC.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Branding: your company logo and app name appear in the header and window title on every PC and Mac, and in the taskbar and shortcuts on Windows.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Administrator recovery: a Backup Admin, ten one-time recovery codes and a logged break-glass procedure with two named people. N Automations holds no credentials and has no back door.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Accessibility: text size from 50 to 200 %, high-contrast mode, full keyboard use, visible focus, text contrast of at least 4.5:1, screen-reader labels, reduced motion, and light and dark themes that follow Windows.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Accessibility: text size from 50 to 200 %, high-contrast mode, full keyboard use, visible focus, text contrast of at least 4.5:1, screen-reader labels, reduced motion, and light and dark themes that follow Windows or macOS.</span></li>
         </ul>
       </div>
       <div class="split-copy">
@@ -378,9 +376,9 @@ section img[width][height]{height:auto;}
         <h2>Security and privacy.</h2>
         <ul class="check-list">
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>No share, send, e-mail or print controls; no connectors, plug-ins, web browsing or code execution; and no telemetry, analytics or crash reports.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>PCs connect only to your company server, over HTTPS and WSS. During setup or a company-server update, the Administrator's PC also reaches the N Automations Licence Service and api.supabase.com. PCs installed from the website also fetch the signed update file from www.nautomations.in when an update is checked or approved.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>PCs connect only to your company server, over HTTPS and WSS. During setup or a company-server update, the Administrator's PC also reaches the N Automations Licence Service and api.supabase.com. Windows PCs installed from the website also fetch the signed update file from www.nautomations.in when an update is checked or approved; Macs fetch no update file.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Integrity: SHA-256 fingerprints of answers, uploads and downloaded files; licence data signed with Ed25519; requests checked against strict schemas; and TLS for all traffic.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Hardened 1.1.0 build: a compiled core without debug information, encrypted sensitive texts, obfuscated setup, sign-in and licence screens, an integrity check at every start and debugger detection. No software can be guaranteed impossible to attack; our Application Security Hardening Statement explains the protections and their limits.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Hardened 1.1.0 build: a compiled core without debug information, encrypted sensitive texts, obfuscated setup, sign-in and licence screens, an integrity check at every start (on a Mac, of the bundled server files and guides) and debugger detection. No software can be guaranteed impossible to attack; our Application Security Hardening Statement explains the protections and their limits.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>N Automations receives only licence data: the Administrator's company e-mail address and its domain, your company server address, the app version, and daily counts of active, disabled and total user accounts. It never sees user names, usernames, passwords, questions, answers, files, audit logs or AI keys. See the <a href="pharma-ai-privacy.html" class="pa-link">Pharma AI privacy policy</a> for details.</span></li>
         </ul>
       </div>
@@ -412,7 +410,7 @@ section img[width][height]{height:auto;}
         <h2>What you will need.</h2>
         <ul class="check-list">
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Windows version: Windows 11, or Windows 10 version 22H2, 64-bit (x64); ARM PCs are not supported. The Microsoft Store version runs on Windows 10 version 2004 (build 19041) or later.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>macOS version: coming soon. Its system requirements will be listed here when it is released.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>macOS version: macOS 11 Big Sur or later, on Apple Silicon or Intel Macs (one universal app), with the latest Safari update for that macOS version (Safari 16.4 or later); a screen of at least 1280 × 720 and about 100 MB of disk. Copying the app into Applications needs an administrator password; using it does not.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Edge WebView2 runtime (built into Windows 11 and normally present on updated Windows 10; the website installer downloads it from Microsoft if it is missing)</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>A screen of at least 1366 × 768, with display scaling of 100, 125, 150 or 200 %</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>About 10 MB for the program, plus space for downloaded files. No special hardware is needed.</span></li>
@@ -439,7 +437,8 @@ section img[width][height]{height:auto;}
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Store (recommended): signed by Microsoft, no Windows warning, updated by the Store, and installed per user without administrator rights.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>winget: <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span></span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Microsoft Intune: add Pharma AI as a Microsoft Store app (Store ID 9NVN67CVWFN0) and assign it to your device or user groups.</span></li>
-          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Each PC joins once with a single PC connection code. For a mass roll-out, IT can place the code in <span class="pa-code">%ProgramData%\PharmaAI\connection-code.txt</span>. The file must be writable only by administrators; otherwise the app ignores it.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Each PC joins once with a single PC connection code. For a mass roll-out, IT can place the code in <span class="pa-code">%ProgramData%\PharmaAI\connection-code.txt</span>. The file must be writable only by administrators; otherwise the app ignores it. On Macs the file is <span class="pa-code">/Library/Application Support/PharmaAI/connection-code.txt</span>, owned by root and not writable by anyone else.</span></li>
+          <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>macOS: the universal .dmg from this page, with an ad-hoc signature (no Apple certificate) and not notarised by Apple (check its SHA-256, then confirm the first start in System Settings &gt; Privacy &amp; Security &gt; Open Anyway). Macs never update themselves; IT installs the new .dmg.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Website installer: signed with N Automations' own certificate. Updates install only after your Administrator approves the new version. On Windows 11 PCs with Smart App Control switched on, use the Microsoft Store version.</span></li>
         </ul>
         <p class="app-note">The Microsoft Store listing is waiting for Microsoft certification. Store, winget and Intune installs work once the listing is live.</p>
