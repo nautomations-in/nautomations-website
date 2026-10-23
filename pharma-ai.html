@@ -47,6 +47,19 @@ section img[width][height]{height:auto;}
 .pa-hash span{display:block;font-family:var(--font-body);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-500);margin-bottom:2px;}
 .pa-code{font-family:Consolas,'Courier New',monospace;font-size:.85em;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);border-radius:6px;padding:1px 6px;word-break:break-word;}
 .pa-dl-card .app-note{border-top:1px solid rgba(0,0,0,.08);padding-top:20px;margin-top:28px;}
+.pa-install{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 34px;border-top:1px solid rgba(0,0,0,.08);padding-top:22px;margin-top:28px;}
+.pa-install .eyebrow{grid-column:1;grid-row:1 / span 2;align-self:start;margin-top:3px;}
+.pa-step{font-size:.88rem;color:var(--ink-300);line-height:1.6;}
+.pa-step>strong{display:block;color:var(--ink-100);margin-bottom:2px;}
+.pa-step details{margin-top:4px;}
+.pa-step summary{cursor:pointer;list-style:none;display:inline-block;color:var(--gold-text);font-weight:600;font-size:.84rem;}
+.pa-step summary::-webkit-details-marker{display:none;}
+.pa-step summary::after{content:" \203A";}
+.pa-step details[open] summary::after{content:" \2039";}
+.pa-step details p{font-size:.84rem;color:var(--ink-500);line-height:1.6;margin-top:6px;}
+.pa-install .pa-help{grid-column:2 / -1;font-size:.84rem;color:var(--ink-500);}
+.pa-install .pa-help a{color:var(--gold-text);font-weight:600;}
+@media (max-width:1080px){.pa-install{grid-template-columns:1fr 1fr;}.pa-install .eyebrow{grid-column:1 / -1;grid-row:auto;}.pa-install .pa-help{grid-column:1 / -1;}}
 .check-list.pa-cols{display:block;column-count:2;column-gap:44px;margin-bottom:0;}
 .check-list.pa-cols li{break-inside:avoid;margin-bottom:16px;}
 .split.pa-pair{align-items:start;}
@@ -57,7 +70,7 @@ section img[width][height]{height:auto;}
 .pa-disclaimer{max-width:900px;margin:36px auto 0;text-align:center;font-size:.82rem;color:var(--ink-500);line-height:1.65;}
 .pa-faq-head{margin:64px auto 28px;}
 @media (max-width:1080px){.pa-badges{grid-template-columns:repeat(2,1fr);}.pa-dl-grid{grid-template-columns:1fr 1fr;}.pa-dl-mac{grid-column:1 / -1;}}
-@media (max-width:760px){.pa-badges,.pa-dl-grid{grid-template-columns:1fr;}.check-list.pa-cols{column-count:1;}.pa-dl-grid{gap:40px;}}
+@media (max-width:760px){.pa-badges,.pa-dl-grid,.pa-install{grid-template-columns:1fr;}.check-list.pa-cols{column-count:1;}.pa-dl-grid{gap:40px;}}
 </style>
 </head>
 <body>
@@ -229,7 +242,7 @@ section img[width][height]{height:auto;}
                Do not use Microsoft's badge image (the badge terms are not confirmed). -->
           <button type="button" class="btn btn-ghost pa-soon" disabled aria-disabled="true" data-store-url="https://apps.microsoft.com/detail/9NVN67CVWFN0">Microsoft Store - coming soon</button>
           <p class="pa-meta pa-soon-note">The Store listing will be available here once Microsoft completes certification.</p>
-          <p class="pa-meta">Free, signed by Microsoft, installs without a Windows warning and is kept up to date by the Store. IT teams can use <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span> or deploy with Microsoft Intune.</p>
+          <p class="pa-meta">Free, signed by Microsoft, no Windows warning, updated by the Store. IT: <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span> or Intune.</p>
         </div>
         <div class="pa-dl-col">
           <div class="eyebrow">Website Installer</div>
@@ -242,7 +255,7 @@ section img[width][height]{height:auto;}
             <li><strong>Windows</strong> Windows 11, or Windows 10 version 22H2, 64-bit (x64)</li>
           </ul>
           <div class="pa-hash"><span>SHA-256</span>EACB408792FA6D7F1A7612F3EAAAF0B9084BDCFEC171245A1FB99C862A31B4C2</div>
-          <p class="pa-meta">Signed by N Automations. Updates install only after your Administrator approves the new version.</p>
+          <p class="pa-meta">Signed by N Automations. Updates after your Administrator approves them.</p>
         </div>
         <div class="pa-dl-col pa-dl-mac">
           <div class="eyebrow">Apple Mac</div>
@@ -256,16 +269,26 @@ section img[width][height]{height:auto;}
             <li><strong>File</strong> PharmaAI_1.1.0_universal.dmg</li>
             <li><strong>Version</strong> 1.1.0</li>
             <li><strong>Size</strong> 22.66 MB (23,759,196 bytes)</li>
-            <li><strong>macOS</strong> macOS 11 Big Sur or later</li>
-            <li><strong>Mac</strong> Apple Silicon and Intel (universal)</li>
+            <li><strong>macOS</strong> macOS 11 Big Sur or later, Apple Silicon and Intel (universal)</li>
           </ul>
           <div class="pa-hash"><span>SHA-256</span>27f2823187c80bd74074557055f7677a279c3096b440485cc8129bf408d29c4a</div>
-          <p class="pa-meta"><strong>First open:</strong> the app carries an ad-hoc signature (no Apple certificate) and is not notarised by Apple, so macOS asks once to confirm it. Drag Pharma AI to Applications, open it, then go to System Settings &gt; Privacy &amp; Security and click <em>Open Anyway</em>. After an update, confirm it once more.</p>
-          <p class="pa-meta">At every start the app checks its bundled server files and guides against SHA-256 values built into it and refuses to start if any was changed. The app program itself has only the ad-hoc signature, so before you install, compare the file's SHA-256 with the value above (in Terminal: <span class="pa-code">shasum -a 256 PharmaAI_1.1.0_universal.dmg</span>).</p>
-          <p class="pa-meta">New versions for Mac are downloaded from this page; your sign-in and settings stay.</p>
+          <p class="pa-meta">Ad-hoc signed, no Apple certificate. Updates: the new .dmg from this page.</p>
         </div>
       </div>
-      <p class="app-note"><strong>Windows SmartScreen:</strong> the direct download is signed with N Automations' own certificate, so Windows SmartScreen shows “Windows protected your PC”. Click <em>More info</em>, then <em>Run anyway</em>. You can first compare the file's SHA-256 with the value above (in PowerShell: <span class="pa-code">Get-FileHash -Algorithm SHA256 PharmaAI_Setup_1.1.0_x64.exe</span>). On Windows 11 PCs with Smart App Control switched on, the direct download is blocked. Please use the Microsoft Store version instead: it is signed by Microsoft and installs without any warning. Need help? <a href="mailto:support@nautomations.in">support@nautomations.in</a></p>
+      <div class="pa-install">
+        <div class="eyebrow">How to install</div>
+        <div class="pa-step">
+          <strong>Windows (.exe)</strong>
+          Run the installer, then on SmartScreen click <em>More info</em> › <em>Run anyway</em>.
+          <details><summary>Read more</summary><p>The installer is signed with N Automations' own certificate, so SmartScreen asks once. Check the file first: <span class="pa-code">Get-FileHash -Algorithm SHA256 PharmaAI_Setup_1.1.0_x64.exe</span> must show the SHA-256 above. If Smart App Control blocks it, use the Microsoft Store version.</p></details>
+        </div>
+        <div class="pa-step">
+          <strong>macOS (.dmg)</strong>
+          Drag the app to Applications, then in Privacy &amp; Security click <em>Open Anyway</em>.
+          <details><summary>Read more</summary><p>The app has an ad-hoc signature and is not notarised by Apple, so macOS asks once (and after each update). Check the file first: <span class="pa-code">shasum -a 256 PharmaAI_1.1.0_universal.dmg</span> must show the SHA-256 above. At every start the app checks its own files.</p></details>
+        </div>
+        <p class="pa-help">Need help? <a href="mailto:support@nautomations.in">support@nautomations.in</a></p>
+      </div>
     </div>
   </div>
 </section>
