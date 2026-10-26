@@ -683,3 +683,76 @@ footer{background:var(--navy-950);border-top:1px solid rgba(0,0,0,.06);padding:7
 /* ---------- v1.3: Customized AI (coming soon) ---------- */
 .split-media.ai-visual{background:var(--navy-950);}
 .split-media.ai-visual img{aspect-ratio:16/10;object-fit:contain;padding:22px;}
+
+/* ---------- v1.4: logo zoom + lightbox ---------- */
+/* Navbar + footer logo. Hover zoom is mouse/trackpad only and uses transform only (no layout shift).
+   The lightbox overlay is built by js/script.js. */
+.navbar .brand:focus-visible, .footer-brand .brand:focus-visible{outline:2px solid var(--cyan-300);outline-offset:5px;border-radius:10px;}
+/* footer link hugs the logo, so hover, click and the focus ring cover only the logo (not the whole column) */
+.footer-brand .brand{width:fit-content;}
+@media (hover:hover) and (pointer:fine){
+  .navbar .brand, .footer-brand .brand{cursor:zoom-in;}
+  .navbar .brand-logo, .footer-brand .brand-logo{
+    position:relative;z-index:0;border-radius:6px;
+    background-color:rgba(255,255,255,0);
+    box-shadow:0 0 0 0 rgba(255,255,255,0), 0 0 0 0 rgba(20,20,40,0);
+    /* z-index waits for the shrink to finish so the logo stays above the nav links */
+    transition:transform .32s cubic-bezier(.2,.8,.2,1), background-color .32s ease, box-shadow .32s ease, z-index 0s linear .32s;
+  }
+  .navbar .brand-logo{transform-origin:top left;}
+  .footer-brand .brand-logo{transform-origin:bottom left;}
+  .navbar .brand:hover .brand-logo, .footer-brand .brand:hover .brand-logo{
+    z-index:5;background-color:#fff;
+    box-shadow:0 0 0 3.5px #fff, 0 8px 18px -6px rgba(20,20,40,.32);
+    transition:transform .32s cubic-bezier(.2,.8,.2,1), background-color .32s ease, box-shadow .32s ease, z-index 0s;
+  }
+  .navbar .brand:hover .brand-logo{transform:scale(2.3);}
+  .footer-brand .brand:hover .brand-logo{transform:scale(1.9);}
+}
+/* narrow window with the menu panel open: keep the logo still */
+@media (hover:hover) and (pointer:fine) and (max-width:760px){
+  .navbar:has(.nav-links.open) .brand:hover .brand-logo{transform:none;background-color:rgba(255,255,255,0);box-shadow:none;}
+}
+
+.logo-lightbox{
+  position:fixed;inset:0;z-index:3000;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(255,255,255,.35);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;cursor:zoom-out;
+  transition:opacity .32s ease;
+}
+.logo-lightbox[hidden]{display:none;}
+.logo-lightbox.open{opacity:1;pointer-events:auto;}
+.logo-lightbox-card{
+  position:relative;padding:clamp(10px,1.6vmin,18px);
+  background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:var(--radius-lg);
+  box-shadow:0 40px 90px -30px rgba(20,20,40,.45), 0 12px 30px -16px rgba(20,20,40,.25);
+  cursor:default;opacity:0;transform:scale(.6);
+  transition:transform .42s cubic-bezier(.2,.9,.3,1.12), opacity .3s ease;
+}
+.logo-lightbox.open .logo-lightbox-card{opacity:1;transform:scale(1);}
+.logo-lightbox-img{
+  display:block;max-width:none;width:72vmin;width:min(72vmin,900px);height:auto;aspect-ratio:1024/919;object-fit:contain;
+  opacity:0;transition:opacity .25s ease;
+}
+.logo-lightbox-img.is-loaded{opacity:1;}
+.logo-lightbox-close{
+  position:absolute;top:-14px;right:-14px;
+  width:42px;height:42px;padding:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;color:var(--ink-100);border:1px solid rgba(0,0,0,.1);
+  box-shadow:0 10px 24px -8px rgba(20,20,40,.4);
+  transition:background-color .2s ease, color .2s ease, border-color .2s ease, transform .25s ease;
+}
+.logo-lightbox-close svg{width:18px;height:18px;display:block;}
+.logo-lightbox-close:hover{background:var(--brand-red);border-color:var(--brand-red);color:#fff;transform:rotate(90deg);}
+.logo-lightbox-close:focus-visible{outline:2px solid var(--cyan-300);outline-offset:3px;}
+@media (max-width:760px){.logo-lightbox{padding:16px;}.logo-lightbox-close{top:-12px;right:-12px;width:40px;height:40px;}}
+@media (prefers-reduced-motion:reduce){
+  .navbar .brand-logo, .footer-brand .brand-logo,
+  .navbar .brand:hover .brand-logo, .footer-brand .brand:hover .brand-logo,
+  .logo-lightbox, .logo-lightbox-card, .logo-lightbox-img, .logo-lightbox-close{transition:none;}
+  .logo-lightbox-card, .logo-lightbox.open .logo-lightbox-card{transform:none;}
+  .logo-lightbox-close:hover{transform:none;}
+}

@@ -7,6 +7,123 @@
 <meta name="description" content="AI agents for pharmaceutical companies and engineering teams — enquiry agents, knowledge assistants, document agents and follow-up agents connected to your CRM, email and documents.">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" type="image/png" href="assets/images/logo.png">
+<style>
+/* AI Agents page: hero "AI agent hub" visual (replaces the old WhatsApp demo video).
+   Pure HTML + CSS. Colours and fonts come from css/style.css. Layout numbers are in "stage units":
+   stage width = 100, so --x / --r / --ri / --ro are % of the width and --y / --cy / --fy are in the same units. */
+.ag-panel{max-width:560px;margin-left:auto;margin-right:auto;}
+.ag-hub{position:relative;container:ag / inline-size;isolation:isolate;overflow:hidden;border-radius:calc(var(--radius-lg) - 8px);
+  background:radial-gradient(85% 55% at 50% 28%,rgba(56,224,255,.14),rgba(56,224,255,0) 70%),radial-gradient(60% 40% at 50% 100%,rgba(202,48,16,.05),rgba(202,48,16,0) 70%),linear-gradient(180deg,#fff 0%,#f2f9fb 100%);
+  box-shadow:inset 0 0 0 1px rgba(10,127,156,.1);
+  --cyc:7s;--bub:clamp(24px,8.5cqw,46px);--fs:clamp(10px,calc(1.5cqw + 6px),12.5px);--lp:7px;}
+.ag-stage{position:relative;aspect-ratio:100 / var(--h);--rp:11;--ps:calc(var(--ri) / var(--rp));}
+/* 3D floor: a tilted plane (perspective + preserve-3d) holding the orbit rings, spokes and the raised platform */
+.ag-scene{position:absolute;inset:0;z-index:0;pointer-events:none;perspective:1600px;perspective:320cqw;perspective-origin:50% calc(var(--fy) / var(--h) * 100%);}
+.ag-floor{position:absolute;left:0;top:calc(var(--fy) / var(--h) * 100%);width:100%;aspect-ratio:1;margin-top:-50%;transform-style:preserve-3d;transform:rotateX(var(--tilt)) scaleY(var(--k));}
+.ag-f{position:absolute;left:calc(50% - var(--d) * .5%);top:calc(50% - var(--d) * .5%);width:calc(var(--d) * 1%);aspect-ratio:1;border-radius:50%;}
+.ag-disc{--d:calc(var(--ro) * 2 + 30);transform:translateZ(-2px);background:radial-gradient(closest-side,rgba(56,224,255,.22),rgba(56,224,255,.08) 55%,rgba(56,224,255,0) 100%);}
+.ag-grid{--d:calc(var(--ro) * 2 + 16);transform:translateZ(-1px);background:repeating-radial-gradient(closest-side,rgba(10,127,156,0) 0 calc(12.5% - 2px),rgba(10,127,156,.1) calc(12.5% - 2px) 12.5%);-webkit-mask:radial-gradient(closest-side,#000 50%,transparent 100%);mask:radial-gradient(closest-side,#000 50%,transparent 100%);}
+.ag-track{--d:calc(var(--ri) * 2);border:2px solid rgba(10,127,156,.28);box-shadow:0 0 0 6px rgba(56,224,255,.07),inset 0 0 0 6px rgba(56,224,255,.07);}
+.ag-track.ag-t2{--d:calc(var(--ro) * 2);border-color:rgba(10,127,156,.2);}
+.ag-orbit{--d:calc(var(--ro) * 2 + 8);border:1.5px dashed rgba(18,184,224,.5);animation:ag-spin 90s linear infinite;}
+.ag-orbit::before,.ag-orbit::after{content:"";position:absolute;left:48.6%;width:2.8%;aspect-ratio:1;border-radius:50%;}
+.ag-orbit::before{top:-1.4%;background:var(--cyan-400);box-shadow:0 0 10px var(--cyan-400);}
+.ag-orbit::after{bottom:-1.4%;background:var(--brand-red);opacity:.55;}
+.ag-inner{--d:calc(var(--ri) * 1.3);border:1.5px dotted rgba(10,127,156,.38);animation:ag-spin 60s linear infinite reverse;}
+.ag-spoke{position:absolute;left:50%;top:50%;width:calc(var(--r) * 1%);height:.55%;border-radius:99px;transform-origin:0 50%;transform:translateZ(1px) translateY(-50%) rotate(calc(var(--a) * -1));background:linear-gradient(90deg,rgba(10,127,156,0) 0%,rgba(10,127,156,.24) 38%,rgba(10,127,156,.45) 100%);}
+.ag-spoke::after{content:"";position:absolute;right:0;top:50%;width:calc(var(--bub) * 1.4);aspect-ratio:1;border-radius:50%;transform:translate(50%,-50%);background:radial-gradient(closest-side,rgba(56,224,255,.34),rgba(56,224,255,.1) 70%,rgba(56,224,255,0));border:1.5px solid rgba(18,184,224,.42);}
+.ag-spoke.ag-n-ha{background:linear-gradient(90deg,rgba(202,48,16,0) 0%,rgba(202,48,16,.2) 38%,rgba(202,48,16,.4) 100%);}
+.ag-spoke.ag-n-ha::after{background:radial-gradient(closest-side,rgba(202,48,16,.16),rgba(202,48,16,.05) 70%,rgba(202,48,16,0));border-color:rgba(202,48,16,.32);}
+.ag-spoke i{position:absolute;inset:0;opacity:0;animation:ag-out var(--cyc) linear infinite;animation-delay:var(--t);}
+.ag-spoke.ag-inb i{animation-name:ag-inb;}
+.ag-spoke i::before,.ag-beam i::before{content:"";position:absolute;left:0;top:50%;width:calc(var(--bub) * .45);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0 20%,var(--cyan-400) 42%,rgba(56,224,255,0) 72%);}
+.ag-spoke.ag-n-ha i::before{background:radial-gradient(circle,#fff 0 20%,#ef6b4d 42%,rgba(202,48,16,0) 72%);}
+.ag-ping{--d:calc(var(--rp) * 2);border:2px solid rgba(56,224,255,.65);opacity:0;animation:ag-ping var(--cyc) ease-out infinite;animation-delay:calc(var(--cyc) * .5);}
+.ag-plat{--d:calc(var(--rp) * 2);}
+.ag-plat-0{transform:translateZ(2px) scale(1.18);background:radial-gradient(closest-side,rgba(10,90,120,.3),rgba(10,90,120,.1) 70%,rgba(10,90,120,0));}
+.ag-plat-1{transform:translateZ(7px);transform:translateZ(calc(3cqw / 2));border:2px solid rgba(18,184,224,.32);background:rgba(255,255,255,.45);}
+.ag-plat-2{transform:translateZ(14px);transform:translateZ(3cqw);border:2px solid rgba(18,184,224,.75);background:radial-gradient(closest-side,#fff 0%,#f0fcff 52%,#d2f2fb 100%);box-shadow:0 0 0 4px rgba(56,224,255,.14),0 0 28px rgba(56,224,255,.45);}
+.ag-plat-2::before{content:"";position:absolute;inset:17%;border-radius:50%;border:2px dashed rgba(10,127,156,.4);animation:ag-turn 40s linear infinite reverse;}
+.ag-plat-2::after{content:"";position:absolute;inset:36%;border-radius:50%;background:radial-gradient(circle,rgba(56,224,255,.95),rgba(56,224,255,0) 70%);}
+/* light beam from the platform up to the agent core */
+.ag-beam{position:absolute;z-index:1;left:50%;top:calc(var(--cy) / var(--h) * 100%);height:calc((var(--pt) - var(--cy)) / var(--h) * 100%);width:calc(var(--bub) * .34);transform:translateX(-50%);border-radius:99px;pointer-events:none;background:linear-gradient(0deg,rgba(56,224,255,.6),rgba(56,224,255,.2) 70%,rgba(56,224,255,.06));}
+.ag-beam::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(0deg,rgba(255,255,255,.95),rgba(255,255,255,.25));}
+.ag-beam i{position:absolute;inset:0;opacity:0;animation:ag-up var(--cyc) linear infinite;animation-delay:calc(var(--cyc) * .26);}
+.ag-beam i + i{animation-name:ag-down;animation-delay:calc(var(--cyc) * .4);}
+.ag-beam i::before{left:50%;top:0;}
+/* the AI agent core: glowing orb with a chip, a tilted ring passes behind and in front of it */
+.ag-core{position:absolute;z-index:2;left:50%;top:calc(var(--cy) / var(--h) * 100%);width:calc(var(--cr) * 2%);aspect-ratio:1;transform:translate(-50%,-50%);}
+.ag-core-in{position:absolute;inset:0;perspective:600px;animation:ag-hover 8s ease-in-out infinite;}
+.ag-halo{position:absolute;inset:-48%;border-radius:50%;background:radial-gradient(closest-side,rgba(56,224,255,.42),rgba(56,224,255,.14) 55%,rgba(56,224,255,0));opacity:.7;animation:ag-glow var(--cyc) ease-in-out infinite;}
+.ag-sat{position:absolute;inset:-27%;transform:rotate(-9deg) rotateX(73deg);}
+.ag-sat-b{clip-path:inset(0 0 50% 0);}
+.ag-sat-f{clip-path:inset(50% 0 0 0);}
+.ag-sat i{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(18,184,224,.75);animation:ag-turn 26s linear infinite;}
+.ag-sat i::before{content:"";position:absolute;top:-5%;left:45.5%;width:9%;aspect-ratio:1;border-radius:50%;background:var(--brand-red);}
+.ag-orb{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.95);background:radial-gradient(circle at 34% 28%,#fff 0%,#fff 12%,#effbfe 34%,#cdf3fc 70%,#a3e7f7 100%);box-shadow:inset 0 -10px 22px rgba(10,127,156,.22),inset 0 8px 16px rgba(255,255,255,.9),0 18px 30px -14px rgba(10,80,110,.55),0 0 0 5px rgba(56,224,255,.12);}
+.ag-chip{position:absolute;left:22%;top:22%;width:56%;height:56%;border-radius:24%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(150deg,#fff 0%,#eefafd 100%);border:1px solid rgba(10,127,156,.3);box-shadow:0 6px 12px -6px rgba(10,60,90,.45),inset 0 1px 0 #fff;}
+.ag-chip::before,.ag-chip::after{content:"";position:absolute;}
+.ag-chip::before{left:22%;right:22%;top:-9%;bottom:-9%;background:repeating-linear-gradient(90deg,rgba(10,127,156,.55) 0 2px,rgba(10,127,156,0) 2px 6px) top / 100% 7.6% no-repeat,repeating-linear-gradient(90deg,rgba(10,127,156,.55) 0 2px,rgba(10,127,156,0) 2px 6px) bottom / 100% 7.6% no-repeat;}
+.ag-chip::after{top:22%;bottom:22%;left:-9%;right:-9%;background:repeating-linear-gradient(0deg,rgba(10,127,156,.55) 0 2px,rgba(10,127,156,0) 2px 6px) left / 7.6% 100% no-repeat,repeating-linear-gradient(0deg,rgba(10,127,156,.55) 0 2px,rgba(10,127,156,0) 2px 6px) right / 7.6% 100% no-repeat;}
+.ag-chip b{font-family:var(--font-head);font-weight:800;font-size:30px;font-size:calc(var(--cr) * .5cqw);line-height:.92;letter-spacing:-.02em;color:var(--brand-red);}
+.ag-chip small{margin-top:.25em;font-size:9px;font-size:clamp(8px,calc(var(--cr) * .13cqw),11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1;color:var(--cyan-300);}
+/* nodes: glass tiles with a short label, placed where the 3D ring puts them */
+.ag-node{position:absolute;z-index:3;left:calc(var(--x) * 1%);top:calc(var(--y) / var(--h) * 100%);transform:translate(-50%,calc(var(--bub) * -.5)) scale(var(--s));transform-origin:50% calc(var(--bub) * .5);}
+.ag-nin{display:flex;flex-direction:column;align-items:center;animation:ag-bob 6s ease-in-out infinite;animation-delay:var(--b);}
+.ag-bub{position:relative;width:var(--bub);height:var(--bub);border-radius:30%;display:grid;place-items:center;color:var(--cyan-300);background:linear-gradient(155deg,#fff 0%,#f3fbfe 55%,#e2f6fb 100%);box-shadow:0 10px 18px -10px rgba(10,60,90,.5),0 0 0 1px rgba(10,127,156,.18),inset 0 1px 0 #fff,inset 0 -5px 9px rgba(56,224,255,.12);}
+.ag-bub svg{width:54%;height:54%;}
+.ag-in .ag-bub{background:linear-gradient(155deg,#f6feff 0%,#d4f5fd 100%);box-shadow:0 10px 18px -10px rgba(10,60,90,.5),0 0 0 1px rgba(18,184,224,.48),inset 0 1px 0 #fff;}
+.ag-ok .ag-bub{color:var(--brand-red);background:linear-gradient(155deg,#fff 0%,#fdeee9 100%);box-shadow:0 10px 18px -10px rgba(120,30,10,.45),0 0 0 1px rgba(202,48,16,.32),inset 0 1px 0 #fff;}
+.ag-ok .ag-bub::after{content:"";position:absolute;inset:-4px;border-radius:34%;border:2px solid rgba(202,48,16,.5);opacity:0;animation:ag-ok var(--cyc) ease-out infinite;}
+.ag-lbl{margin-top:3px;padding:1px var(--lp);border-radius:7px;background:rgba(255,255,255,.9);border:1px solid rgba(10,127,156,.14);box-shadow:0 4px 10px -6px rgba(10,60,90,.35);font-size:var(--fs);font-weight:600;line-height:1.2;color:var(--ink-100);text-align:center;white-space:nowrap;}
+.ag-lbl small{display:block;font-size:.84em;font-weight:500;color:var(--ink-500);}
+/* legend under the stage: the flow in four steps */
+.ag-legend{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 8px;padding:2px 14px 16px;font-size:calc(var(--fs) * .94);font-weight:600;line-height:1.2;color:var(--ink-300);}
+.ag-legend span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.ag-legend i{flex:none;width:.72em;height:.72em;border-radius:50%;}
+.ag-legend b{position:relative;flex:none;width:12px;height:1.5px;background:rgba(10,127,156,.45);}
+.ag-legend b::after{content:"";position:absolute;right:0;top:50%;width:5px;height:5px;border-top:1.5px solid rgba(10,127,156,.6);border-right:1.5px solid rgba(10,127,156,.6);transform:translateY(-50%) rotate(45deg);}
+.ag-k1{background:var(--cyan-500);}
+.ag-k2{background:radial-gradient(circle at 35% 30%,#fff,#9fe6f6);box-shadow:0 0 0 1px rgba(10,127,156,.4);}
+.ag-k3{background:#fff;box-shadow:inset 0 0 0 2px var(--cyan-300);}
+.ag-k4{background:var(--brand-red);}
+@keyframes ag-spin{from{transform:translateZ(.5px) rotate(0deg)}to{transform:translateZ(.5px) rotate(360deg)}}
+@keyframes ag-turn{to{transform:rotate(360deg)}}
+@keyframes ag-out{0%{transform:translateX(0);opacity:0}4%,16%{opacity:1}20%,100%{transform:translateX(100%);opacity:0}}
+@keyframes ag-inb{0%{transform:translateX(100%);opacity:0}4%,16%{opacity:1}20%,100%{transform:translateX(0);opacity:0}}
+@keyframes ag-up{0%{transform:translateY(100%);opacity:0}2%,9%{opacity:1}11%,100%{transform:translateY(0);opacity:0}}
+@keyframes ag-down{0%{transform:translateY(0);opacity:0}2%,9%{opacity:1}11%,100%{transform:translateY(100%);opacity:0}}
+@keyframes ag-ping{0%{transform:translateZ(1px) scale(1);opacity:.8}32%,100%{transform:translateZ(1px) scale(var(--ps));opacity:0}}
+@keyframes ag-glow{0%,26%,60%,100%{opacity:.7;transform:scale(.94)}39%{opacity:1;transform:scale(1.06)}}
+@keyframes ag-hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-4%)}}
+@keyframes ag-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes ag-ok{0%,86%{opacity:0;transform:scale(.9)}90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.3)}}
+/* layout (stage units, computed from the 3D ring so each node sits on its socket) */
+.ag-stage{--h:104.1;--fy:59.76;--tilt:50.66deg;--k:0.948;--ri:35.3;--ro:46.26;--cy:22.82;--cr:11.06;--pt:57.43;}
+.ag-n-email{--a:129.5deg;--r:46.26;--x:22.77;--y:39.95;--s:0.962;}
+.ag-n-chat{--a:177.3deg;--r:35.3;--x:14.87;--y:58.78;--s:0.998;}
+.ag-n-wa{--a:229.6deg;--r:46.26;--x:17.37;--y:82.77;--s:1.044;}
+.ag-n-ha{--a:270deg;--r:35.3;--x:50;--y:82.84;--s:1.044;}
+.ag-n-rep{--a:299deg;--r:46.26;--x:74.74;--y:86.54;--s:1.051;}
+.ag-n-doc{--a:340.8deg;--r:35.3;--x:84.25;--y:66.93;--s:1.014;}
+.ag-n-kb{--a:38.5deg;--r:46.26;--x:83.97;--y:43.53;--s:0.969;}
+.ag-n-crm{--a:65.9deg;--r:35.3;--x:63.41;--y:41.73;--s:0.966;}
+.ag-n-email{--t:calc(var(--cyc) * 0);--b:-0.4s;}
+.ag-n-chat{--t:calc(var(--cyc) * 0.04);--b:-2.2s;}
+.ag-n-wa{--t:calc(var(--cyc) * 0.08);--b:-4.1s;}
+.ag-n-ha{--t:calc(var(--cyc) * 0.7);--b:-1.3s;}
+.ag-n-rep{--t:calc(var(--cyc) * 0.54);--b:-3.3s;}
+.ag-n-doc{--t:calc(var(--cyc) * 0.52);--b:-5s;}
+.ag-n-kb{--t:calc(var(--cyc) * 0.48);--b:-0.9s;}
+.ag-n-crm{--t:calc(var(--cyc) * 0.5);--b:-2.8s;}
+@container ag (width < 400px){.ag-stage{--lp:4px;}}
+@container ag (width < 300px){.ag-chip small{font-size:7px;letter-spacing:.05em;}}
+@container ag (width < 280px){.ag-stage{--lp:3px;--bub:22px;}}
+@container ag (width < 440px){.ag-lbl small{display:none;}}
+@container ag (width < 450px){.ag-legend{display:grid;grid-template-columns:auto auto;justify-content:center;gap:7px 20px;padding-bottom:14px;}.ag-legend b{display:none;}}
+@supports not (width:1cqw){.ag-hub{--bub:40px;--fs:12px;}.ag-chip b{font-size:28px;}.ag-chip small{font-size:9px;}}
+@media (prefers-reduced-motion:reduce){.ag-hub *,.ag-hub *::before,.ag-hub *::after{animation:none !important;}.ag-spoke i,.ag-beam i,.ag-ping,.ag-orbit::after{display:none;}.ag-panel.tilt{transform:none !important;transition:none;}}
+</style>
 </head>
 <body>
 <header class="navbar" id="navbar">
@@ -39,10 +156,45 @@
         </div>
       </div>
       <div class="reveal">
-        <div class="glass-panel" data-tilt>
-          <video autoplay muted loop playsinline poster="assets/videos/ai-agents-demo-poster.jpg">
-            <source src="assets/videos/ai-agents-demo.mp4" type="video/mp4">
-          </video>
+        <div class="glass-panel ag-panel" data-tilt>
+          <div class="ag-hub" role="img" aria-label="AI agent connected to email, website chat, WhatsApp, CRM, documents, knowledge base and reports, with people approving actions">
+            <div class="ag-stage" aria-hidden="true">
+              <div class="ag-scene">
+                <div class="ag-floor">
+                  <span class="ag-f ag-disc"></span><span class="ag-f ag-grid"></span>
+                  <span class="ag-f ag-track"></span><span class="ag-f ag-track ag-t2"></span><span class="ag-f ag-orbit"></span><span class="ag-f ag-inner"></span>
+                  <span class="ag-spoke ag-n-email ag-inb"><i></i></span>
+                  <span class="ag-spoke ag-n-chat ag-inb"><i></i></span>
+                  <span class="ag-spoke ag-n-wa ag-inb"><i></i></span>
+                  <span class="ag-spoke ag-n-ha"><i></i></span>
+                  <span class="ag-spoke ag-n-rep"><i></i></span>
+                  <span class="ag-spoke ag-n-doc"><i></i></span>
+                  <span class="ag-spoke ag-n-kb"><i></i></span>
+                  <span class="ag-spoke ag-n-crm"><i></i></span>
+                  <span class="ag-f ag-ping"></span>
+                  <span class="ag-f ag-plat ag-plat-0"></span><span class="ag-f ag-plat ag-plat-1"></span><span class="ag-f ag-plat ag-plat-2"></span>
+                </div>
+              </div>
+              <span class="ag-beam"><i></i><i></i></span>
+              <div class="ag-core">
+                <div class="ag-core-in">
+                  <span class="ag-halo"></span>
+                  <span class="ag-sat ag-sat-b"><i></i></span>
+                  <span class="ag-orb"><span class="ag-chip"><b>AI</b><small>Agent</small></span></span>
+                  <span class="ag-sat ag-sat-f"><i></i></span>
+                </div>
+              </div>
+              <div class="ag-node ag-in ag-n-email"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span><span class="ag-lbl">Email</span></div></div>
+              <div class="ag-node ag-sys ag-n-crm"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.3"/><path d="M5.6 16.2c.6-1.6 1.9-2.5 3.4-2.5s2.8.9 3.4 2.5M14.5 10h4M14.5 13.5h3"/></svg></span><span class="ag-lbl">CRM</span></div></div>
+              <div class="ag-node ag-sys ag-n-kb"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 6.5C10 5 7 4.6 4 5v13c3-.4 6 0 8 1.5 2-1.5 5-1.9 8-1.5V5c-3-.4-6 0-8 1.5z"/><path d="M12 6.5v13"/></svg></span><span class="ag-lbl">Knowledge<br>Base</span></div></div>
+              <div class="ag-node ag-in ag-n-chat"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 4.5h14a2 2 0 0 1 2 2v8.5a2 2 0 0 1-2 2H10l-4.5 3.5V17H5a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M8 10.8h.01M12 10.8h.01M16 10.8h.01"/></svg></span><span class="ag-lbl">Website<br>Chat</span></div></div>
+              <div class="ag-node ag-sys ag-n-doc"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M8.5 12.5h7M8.5 16h7"/></svg></span><span class="ag-lbl">Documents<small>PDF / Excel</small></span></div></div>
+              <div class="ag-node ag-in ag-n-wa"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 8h4.5M10 11.5h3"/><path d="M11 18.2h2"/></svg></span><span class="ag-lbl">WhatsApp</span></div></div>
+              <div class="ag-node ag-ok ag-n-ha"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="9.5" cy="8" r="3.5"/><path d="M3.5 20c.7-3.5 3.1-5.5 6-5.5 1.2 0 2.3.3 3.2.9"/><path d="M14.8 17.6l2.2 2.2 4.2-4.6"/></svg></span><span class="ag-lbl">Human<br>Approval</span></div></div>
+              <div class="ag-node ag-sys ag-n-rep"><div class="ag-nin"><span class="ag-bub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20h16"/><rect x="5.5" y="11" width="3.2" height="6.5" rx=".8"/><rect x="10.4" y="6.5" width="3.2" height="11" rx=".8"/><rect x="15.3" y="13" width="3.2" height="4.5" rx=".8"/></svg></span><span class="ag-lbl">Reports</span></div></div>
+            </div>
+            <div class="ag-legend" aria-hidden="true"><span><i class="ag-k1"></i>Enquiry in</span><b></b><span><i class="ag-k2"></i>AI agent</span><b></b><span><i class="ag-k3"></i>Your systems</span><b></b><span><i class="ag-k4"></i>People approve</span></div>
+          </div>
         </div>
       </div>
     </div>

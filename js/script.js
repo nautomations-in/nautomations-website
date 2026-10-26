@@ -189,3 +189,134 @@ document.addEventListener('DOMContentLoaded', () => {
     const eb = document.getElementById('aiLaunchEyebrow'); if (eb) eb.textContent = 'Launching Now';
   }
 });
+
+// ===== N Automations logo: hover zoom + lightbox =====
+// Hover zoom is CSS only (style.css v1.4). Click, tap, Enter or Space on the
+// navbar or footer logo shows the big logo over a blurred page.
+document.addEventListener('DOMContentLoaded', () => {
+  const logoLinks = Array.from(document.querySelectorAll('.navbar .brand, .footer-brand .brand'))
+    .filter(a => a.querySelector('.brand-logo'));
+  if (!logoLinks.length) return;
+
+  // Big logo lives next to the small one; its src is set on first open only
+  const smallSrc = logoLinks[0].querySelector('.brand-logo').src;
+  let largeSrc = 'assets/images/logo-large.png';
+  try { largeSrc = new URL('logo-large.png', smallSrc).href; } catch (err) { /* keep the default */ }
+
+  // Overlay, built once
+  const box = document.createElement('div');
+  box.className = 'logo-lightbox';
+  box.hidden = true;
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', 'N Automations logo');
+  box.innerHTML =
+    '<div class="logo-lightbox-card">' +
+      '<img class="logo-lightbox-img" alt="N Automations logo" width="1024" height="919" decoding="async">' +
+      '<button type="button" class="logo-lightbox-close" aria-label="Close">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' +
+      '</button>' +
+    '</div>';
+  document.body.appendChild(box);
+  const card = box.querySelector('.logo-lightbox-card');
+  const bigImg = box.querySelector('.logo-lightbox-img');
+  const closeBtn = box.querySelector('.logo-lightbox-close');
+  bigImg.addEventListener('load', () => bigImg.classList.add('is-loaded'));
+  bigImg.addEventListener('error', () => { if (bigImg.src !== smallSrc) bigImg.src = smallSrc; });
+
+  // Page scroll lock; pad by the scrollbar width so nothing jumps
+  const navbarEl = document.getElementById('navbar');
+  const toTopEl = document.getElementById('toTop');
+  // The navbar animates its padding (style.css), so change it with transitions off
+  const setNavPad = (v) => {
+    if (!navbarEl) return;
+    navbarEl.style.transition = 'none';
+    navbarEl.style.paddingRight = v;
+    void navbarEl.offsetWidth;
+    navbarEl.style.transition = '';
+  };
+  const lockScroll = () => {
+    const sb = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (sb > 0) {
+      document.body.style.paddingRight = sb + 'px';
+      setNavPad(sb + 'px');
+      if (toTopEl) toTopEl.style.marginRight = sb + 'px';
+    }
+  };
+  const unlockScroll = () => {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    if (navbarEl && navbarEl.style.paddingRight) setNavPad('');
+    if (toTopEl) toTopEl.style.marginRight = '';
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let isOpen = false;
+  let opener = null;
+  let hideTimer = 0;
+
+  const openLogo = (link) => {
+    if (isOpen) return;
+    isOpen = true;
+    opener = link;
+    clearTimeout(hideTimer);
+    if (!bigImg.getAttribute('src')) bigImg.src = largeSrc;
+    lockScroll();
+    box.hidden = false;
+    void box.offsetWidth; // fade in from the closed state
+    box.classList.add('open');
+    closeBtn.focus({ preventScroll: true });
+  };
+  const closeLogo = () => {
+    if (!isOpen) return;
+    isOpen = false;
+    box.classList.remove('open');
+    unlockScroll();
+    hideTimer = setTimeout(() => { if (!isOpen) box.hidden = true; }, reduceMotion.matches ? 0 : 450);
+    if (opener) opener.focus({ preventScroll: true });
+  };
+
+  // The logo links now open the lightbox instead of navigating
+  const isActivateKey = (e) => e.key === ' ' || e.key === 'Spacebar';
+  logoLinks.forEach(link => {
+    link.setAttribute('role', 'button');
+    link.setAttribute('aria-haspopup', 'dialog');
+    link.setAttribute('aria-label', 'View the N Automations logo');
+    link.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); openLogo(link); }
+      else if (isActivateKey(e)) e.preventDefault(); // no page scroll
+    });
+    link.addEventListener('keyup', (e) => {
+      if (isActivateKey(e)) { e.preventDefault(); openLogo(link); }
+    });
+  });
+
+  // Capture phase: runs before the "#top" smooth-scroll handler on the home page
+  document.addEventListener('click', (e) => {
+    const link = e.target instanceof Element ? e.target.closest('a.brand') : null;
+    if (!link || !logoLinks.includes(link)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    openLogo(link);
+  }, true);
+
+  // Click on the blurred backdrop closes; clicks on the logo card do nothing
+  let pressOnCard = false;
+  box.addEventListener('pointerdown', (e) => { pressOnCard = card.contains(e.target); });
+  box.addEventListener('click', (e) => {
+    if (!card.contains(e.target) && !pressOnCard) closeLogo();
+    pressOnCard = false;
+  });
+  closeBtn.addEventListener('click', closeLogo);
+
+  // Esc closes; Tab stays on the close button
+  document.addEventListener('keydown', (e) => {
+    if (!isOpen) return;
+    if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); closeLogo(); }
+    else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+  });
+  document.addEventListener('focusin', (e) => {
+    if (isOpen && !box.contains(e.target)) closeBtn.focus({ preventScroll: true });
+  });
+});

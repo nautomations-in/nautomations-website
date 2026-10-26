@@ -7,10 +7,40 @@
 <meta name="description" content="N Automations builds AI agents, personalised business applications, workflow automation, document automation and dashboards for pharmaceutical companies, pharma engineering teams and regulated operations. Hyderabad, India.">
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* Home hero: Pharma AI logo card */
-.hero-card.pa-hero-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#fff;aspect-ratio:4/3.2;padding:28px;text-decoration:none;}
-.hero-card.pa-hero-brand img{width:58%;height:auto;aspect-ratio:auto;object-fit:contain;}
-.pa-hero-brand-name{font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,3.6vw,3rem);color:#0A4BD0;line-height:1;letter-spacing:-.01em;}
+/* Home hero: "Explore Pharma AI" link + Pharma AI card, top-aligned with the eyebrow */
+.hero{min-height:min(100vh,1080px);}
+.hero-grid{align-items:start;}
+.eyebrow.pa-hero-explore{color:var(--gold-text);font-weight:700;transition:color .2s ease;}
+.eyebrow.pa-hero-explore::before{background:var(--gold-500);}
+.pa-hero-explore svg{width:14px;height:14px;flex:none;transition:transform .25s ease;}
+.pa-hero-explore:hover{color:var(--brand-red);}
+.pa-hero-explore:hover svg{transform:translateX(4px);}
+.pa-hero-explore:focus-visible,.hero-card.pa-hero-brand:focus-visible{outline:2px solid var(--cyan-300);outline-offset:4px;}
+.pa-hero-stage{position:relative;}
+.hero-card.pa-hero-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;aspect-ratio:11/12;padding:82px 28px 50px;text-decoration:none;text-align:center;background:radial-gradient(110% 80% at 50% 38%,#eef4ff 0%,#fff 64%);border:1px solid rgba(10,75,208,.10);}
+.hero-card.pa-hero-brand img{width:60%;height:auto;aspect-ratio:1/1;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(20,90,200,.16));}
+.pa-hero-brand-text{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:8px;}
+.pa-hero-brand-name{font-family:var(--font-head);font-weight:800;font-size:clamp(2.2rem,3.6vw,3.1rem);color:#0A4BD0;line-height:1;letter-spacing:-.01em;}
+.pa-hero-brand-tag{font-size:.95rem;color:var(--ink-500);line-height:1.45;text-wrap:balance;}
+.pa-hero-stage .floating-chip.chip-1{top:22px;right:-18px;left:auto;bottom:auto;}
+.pa-hero-stage .floating-chip.chip-2{bottom:-22px;left:-24px;right:auto;top:auto;}
+/* One-column hero: wide card with the logo beside the name (tablets), stacked card (phones) */
+@media (max-width:1080px) and (min-width:600px){
+  .hero-card.pa-hero-brand{aspect-ratio:auto;flex-direction:row;gap:clamp(24px,4vw,44px);padding:84px 40px 60px;}
+  .hero-card.pa-hero-brand img{width:clamp(170px,24vw,230px);}
+  .pa-hero-brand-text{align-items:flex-start;text-align:left;margin-top:0;}
+  .pa-hero-brand-name{font-size:clamp(2.2rem,5vw,3rem);}
+}
+@media (max-width:599px){
+  .hero-visual{max-width:460px;}
+  .hero-card.pa-hero-brand{aspect-ratio:auto;padding:84px 20px 50px;}
+  .hero-card.pa-hero-brand img{width:min(58%,190px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .pa-hero-explore,.pa-hero-explore svg{transition:none;}
+  .pa-hero-explore:hover svg{transform:none;}
+  .hero-visual .floating-chip{animation:none;}
+}
 </style>
 <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
@@ -54,12 +84,18 @@
         </div>
       </div>
       <div class="hero-visual reveal">
-        <a href="pharma-ai.html" class="hero-card pa-hero-brand" data-tilt aria-label="Pharma AI">
-          <img src="assets/images/pharma-ai/logo-large.png" alt="Pharma AI logo">
-          <span class="pa-hero-brand-name">Pharma AI</span>
-        </a>
-        <div class="floating-chip chip-1"><span class="dot"></span> Enquiry → Quotation → Follow-up</div>
-        <div class="floating-chip chip-2"><span class="dot" style="background:var(--gold-400);box-shadow:0 0 12px var(--gold-400)"></span> Documents → Data → Dashboards</div>
+        <a href="pharma-ai.html" class="eyebrow pa-hero-explore">Click here to Explore Pharma AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="pa-hero-stage">
+          <a href="pharma-ai.html" class="hero-card pa-hero-brand" data-tilt aria-label="Pharma AI">
+            <img src="assets/images/pharma-ai/logo-large.png" alt="Pharma AI logo" width="560" height="560">
+            <span class="pa-hero-brand-text">
+              <span class="pa-hero-brand-name">Pharma AI</span>
+              <span class="pa-hero-brand-tag">AI for every department of your pharma company</span>
+            </span>
+          </a>
+          <div class="floating-chip chip-1"><span class="dot"></span> Enquiry → Quotation → Follow-up</div>
+          <div class="floating-chip chip-2"><span class="dot" style="background:var(--gold-400);box-shadow:0 0 12px var(--gold-400)"></span> Documents → Data → Dashboards</div>
+        </div>
       </div>
     </div>
   </div>
@@ -77,7 +113,7 @@
 <section class="section-tight" id="first-app">
   <div class="container">
     <div class="split reveal">
-      <a href="personalised-apps.html#pdf-tools" class="split-media app-shot app-ad-link" data-tilt aria-label="View N Automations PDF Tools"><img src="assets/images/pdf-tools-dashboard.jpg" alt="N Automations PDF Tools for Windows"></a>
+      <a href="pdf-tools.html" class="split-media app-shot app-ad-link" data-tilt aria-label="View N Automations PDF Tools"><img src="assets/images/pdf-tools-dashboard.jpg" alt="N Automations PDF Tools for Windows"></a>
       <div class="split-copy">
         <div class="eyebrow">New · Our First App</div>
         <h2>N Automations – PDF Tools for Windows.</h2>
@@ -88,7 +124,7 @@
           <span class="stack-pill">100% Offline</span>
           <span class="stack-pill">Windows 10 / 11</span>
         </div>
-        <div style="margin-top:28px"><a href="personalised-apps.html#pdf-tools" class="btn btn-primary">View &amp; Download <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div style="margin-top:28px"><a href="pdf-tools.html" class="btn btn-primary">View &amp; Download <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
     </div>
   </div>

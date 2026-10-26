@@ -1,7 +1,7 @@
 // N Automations - PDF Tools service worker.
 // Caches the application shell and local conversion engines only.
 // User documents are never read, stored or transmitted by this worker.
-const CACHE = 'na-pdf-tools-vmu8l51oz';
+const CACHE = 'na-pdf-tools-vmu8l51oz-p1';
 const SHELL = ["/pdf-tools/","/pdf-tools/index.html","/pdf-tools/assets/index-CbYPeLKl.js","/pdf-tools/assets/jszip.min-BMmAup8j.js","/pdf-tools/assets/engine.worker-Ca3pL-9K.js","/pdf-tools/assets/index-jvwm160C.css"];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL.filter(Boolean))).then(() => self.skipWaiting()));
