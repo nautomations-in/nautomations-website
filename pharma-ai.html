@@ -255,14 +255,9 @@ section img[width][height]{height:auto;}
         <div class="pa-dl-col">
           <div class="eyebrow">Recommended</div>
           <h3>Microsoft Store</h3>
-          <!-- MICROSOFT STORE BUTTON: "coming soon" state.
-               The listing (Store ID 9NVN67CVWFN0) is waiting for Microsoft certification.
-               To switch it on when the listing is live, replace the <button> below with:
-                 <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9NVN67CVWFN0" target="_blank" rel="noopener">Get it from Microsoft Store</a>
-               and delete the paragraph with class "pa-soon-note" under it.
+          <!-- Microsoft Store listing is live (Store ID 9NVN67CVWFN0, certified 29-10-2026).
                Do not use Microsoft's badge image (the badge terms are not confirmed). -->
-          <button type="button" class="btn btn-ghost pa-soon" disabled aria-disabled="true" data-store-url="https://apps.microsoft.com/detail/9NVN67CVWFN0">Microsoft Store - coming soon</button>
-          <p class="pa-meta pa-soon-note">The Store listing will be available here once Microsoft completes certification.</p>
+          <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9NVN67CVWFN0" target="_blank" rel="noopener">Get it from Microsoft Store</a>
           <p class="pa-meta">Free, signed by Microsoft, no Windows warning, updated by the Store. IT: <span class="pa-code">winget install --id 9NVN67CVWFN0 --source msstore</span> or Intune.</p>
         </div>
         <div class="pa-dl-col">
@@ -540,7 +535,7 @@ section img[width][height]{height:auto;}
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>macOS: the universal .dmg from this page, with an ad-hoc signature (no Apple certificate) and not notarised by Apple (check its SHA-256, then confirm the first start in System Settings &gt; Privacy &amp; Security &gt; Open Anyway). Macs never update themselves; IT installs the new .dmg.</span></li>
           <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l4 4 10-10"/></svg></span><span>Website installer: signed with N Automations' own certificate. Updates install only after your Administrator approves the new version. On Windows 11 PCs with Smart App Control switched on, use the Microsoft Store version.</span></li>
         </ul>
-        <p class="app-note">The Microsoft Store listing is waiting for Microsoft certification. Store, winget and Intune installs work once the listing is live.</p>
+        <p class="app-note">Store, winget and Intune installs use the Microsoft Store listing (Store ID 9NVN67CVWFN0).</p>
       </div>
       <div class="split-copy">
         <div class="eyebrow">Support</div>
